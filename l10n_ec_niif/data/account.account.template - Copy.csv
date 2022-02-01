@@ -1,0 +1,270 @@
+id,code,name,reconcile,user_type_id/id,chart_template_id/id,group_id/id
+1010201,1010201,ACTIVOS FINANCIEROS A VALOR RAZONABLE CON CAMBIOS EN RESULTADOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+1010202,1010202,ACTIVOS FINANCIEROS DISPONIBLES PARA LA VENTA,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+1010203,1010203,ACTIVOS FINANCIEROS MANTENIDOS HASTA EL VENCIMIENTO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+1010204,1010204,(-) PROVISION POR DETERIORO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+101020501,101020501,DOCUMENTOS Y CXC CLIENTES NO RELACIONADOS DE ACTIVIDADES ORDINARIAS QUE NO GENEREN INTERESES,1,account.data_account_type_receivable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010205
+101020502,101020502,DOCUMENTOS Y CXC CLIENTES NO RELACIONADOS DE ACTIVIDADES ORDINARIAS QUE GENEREN INTERESES,1,account.data_account_type_receivable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010205
+1010206,1010206,DOCUMENTOS Y CXC CLIENTES RELACIONADOS,1,account.data_account_type_receivable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+1010207,1010207,OTRAS CUENTAS POR COBRAR RELACIONADAS,1,account.data_account_type_receivable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+1010208,1010208,OTRAS CUENTAS POR COBRAR,1,account.data_account_type_receivable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+1010209,1010209,(-) PROVISIÓN CUENTAS INCOBRABLES Y DETERIORO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10102
+1010301,1010301,INVENTARIOS DE MATERIA PRIMA,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010302,1010302,INVENTARIOS DE PRODUCTOS EN PROCESO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010303,1010303,INVENTARIOS DE SUMINISTROS O MATERIALES A SER CONSUMIDOS EN EL PROCESO DE PRODUCCION,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010304,1010304,INVENTARIOS DE SUMINISTROS O MATERIALES A SER CONSUMIDOS EN EL LA PRESTACION DEL SERVICIO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010305,1010305,INVENTARIOS DE PROD. TERM. Y MERCAD. EN ALMACÉN - PRODUCIDO POR LA COMPAÑÍA,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010306,1010306,INVENTARIOS DE PROD. TERM. Y MERCAD. EN ALMACÉN - COMPRADO A DE TERCEROS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010307,1010307,MERCADERÍAS EN TRÁNSITO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010308,1010308,OBRAS EN CONSTRUCCION,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010309,1010309,OBRAS TERMINADAS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010310,1010310,MATERIALES O BIENES PARA LA CONSTRUCCION,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010311,1010311,"INVENTARIOS REPUESTOS, HERRAMIENTAS Y ACCESORIOS",0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010312,1010312,OTROS INVENTARIOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010313,1010313,(-) PROVISIÓN POR VALOR NETO DE REALIZACIÓN Y OTRAS PERDIDAS EN INVENTARIO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010314,1010314,INVENTARIO ENTREGADO NO FACTURADO,1,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10103
+1010401,1010401,SEGUROS PAGADOS POR ANTICIPADO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10104
+1010402,1010402,ARRIENDOS PAGADOS POR ANTICIPADO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10104
+1010403,1010403,ANTICIPOS A PROVEEDORES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10104
+1010404,1010404,OTROS ANTICIPOS ENTREGADOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10104
+101050101,101050101,IVA PAGADO EN COMPRAS LOCALES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010501
+101050102,101050102,IVA PAGADO EN COMPRAS LOCALES DE ACTIVOS FIJOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010501
+101050103,101050103,IVA PAGADO EN OTRAS ADQUISICIONES(SIN DERECHO A CRÉDITO TRIBUTARIO),0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010501
+101050104,101050104,IVA PAGADO EN IMPORTACIÓN DE SERVICIOS y/o DERECHOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010501
+101050105,101050105,IVA PAGADO EN IMPORTACIÓN DE BIENES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010501
+101050106,101050106,IVA PAGADO EN IMPORTACIÓN DE ACTIVOS FIJOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010501
+101050107,101050107,IVA PAGADO EN RETENCIONES DE LA FUENTE,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010501
+101050201,101050201,RETENCIONES EN LA FUENTE PAGADAS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1010502
+1010503,1010503,ANTICIPO DE IMPUESTO A LA RENTA,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10105
+10106,10106,ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA Y OPERACIONES DISCONTINUADAS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_101
+10107,10107,CONSTRUCCIONES EN PROCESO (NIC 11 Y SECC.23 PYMES),0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_101
+10108,10108,OTROS ACTIVOS CORRIENTES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_101
+1020101,1020101,TERRENOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020102,1020102,EDIFICIOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020103,1020103,CONTRUCCIONES EN CURSO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020104,1020104,INSTALACIONES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020105,1020105,MUEBLES Y ENSERES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020106,1020106,MAQUINARIA Y EQUIPO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020107,1020107,"NAVES, AERONAVES, BARCAZAS Y SIMILARES",0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020108,1020108,EQUIPO DE COMPUTACIÓN,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020109,1020109,"VEHÍCULOS, EQUIPOS DE TRANSPORTE Y EQUIPO CAMINERO MÓVIL",0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020110,1020110,"OTROS PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020111,1020111,REPUESTOS Y HERRAMIENTAS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020112,1020112,"(-) DEPRECIACIÓN ACUMULADA PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+1020113,1020113,"(-) DETERIORO ACUMULADO DE PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10201
+102011401,102011401,ACTIVOS DE EXPLORACION Y EXPLOTACION,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1020114
+102011402,102011402,(-) AMORTIZACION ACUMULADA DE ACTIVOS DE EXPLORACIÓN Y EXPLOTACIÓN,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1020114
+102011403,102011403,(-) DETERIORO ACUMULADO DE ACTIVOS DE EXPLORACIÓN Y EXPLOTACIÓN,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_1020114
+1020201,1020201,TERRENOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10202
+1020202,1020202,EDIFICIOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10202
+1020203,1020203,(-) DEPRECIACION ACUMULADA DE PROPIEDADES DE INVERSIÓN,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10202
+1020204,1020204,(-) DETERIORO ACUMULADO DE PROPIEDADES DE INVERSIÓN,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10202
+1020301,1020301,ANIMALES VIVOS EN CRECIMIENTO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10203
+1020302,1020302,ANIMALES VIVOS EN PRODUCCION,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10203
+1020303,1020303,PLANTAS EN CRECIMIENTO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10203
+1020304,1020304,PLANTAS EN PRODUCCION,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10203
+1020305,1020305,(-) DEPRECIACION ACUMULADA DE ACTIVOS BIOLÓGICOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10203
+1020306,1020306,(-) DETERIORO ACUMULADO DE ACTIVOS BIOLOGÍCOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10203
+1020401,1020401,PLUSVALÍAS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10204
+1020402,1020402,"MARCAS, PATENTES, DERECHOS DE LLAVE , CUOTAS PATRIMONIALES Y OTROS SIMILARES",0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10204
+1020403,1020403,ACTIVOS DE EXPLORACION Y EXPLOTACION,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10204
+1020404,1020404,(-) AMORTIZACIÓN ACUMULADA DE ACTIVOS INTANGIBLE,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10204
+1020405,1020405,(-) DETERIORO ACUMULADO DE ACTIVO INTANGIBLE,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10204
+1020406,1020406,OTROS INTANGIBLES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10204
+10205,10205,ACTIVOS POR IMPUESTOS DIFERIDOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_102
+1020601,1020601,ACTIVOS FINANCIEROS MANTENIDOS HASTA EL VENCIMIENTO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10206
+1020602,1020602,(-) PROVISION POR DETERIORO DE ACTIVOS FINANCIEROS MANTENIDOS HASTA EL VENCIMIENTO,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10206
+1020603,1020603,DOCUMENTOS Y CUENTAS POR COBRAR,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10206
+1020604,1020604,(-) PROVISIÓN CUENTAS INCOBRABLES DE ACTIVOS FINANCIEROS NO CORRIENTES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10206
+1020701,1020701,INVERSIONES SUBSIDIARIAS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10207
+1020702,1020702,INVERSIONES ASOCIADAS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10207
+1020703,1020703,INVERSIONES NEGOCIOS CONJUNTOS,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10207
+1020704,1020704,OTRAS INVERSIONES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10207
+1020705,1020705,(-) PROVISIÓN VALUACIÓN DE INVERSIONES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10207
+1020706,1020706,OTROS ACTIVOS NO CORRIENTES,0,account.data_account_type_current_assets,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_10207
+20101,20101,PASIVOS FINANCIEROS A VALOR RAZONABLE CON CAMBIOS EN RESULTADOS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_201
+20102,20102,PASIVOS POR CONTRATOS DE ARRENDAMIENTO FINANCIEROS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_201
+2010301,2010301,CUENTAS Y DOCUMENTOS POR PAGAR LOCALES,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20103
+2010302,2010302,CUENTAS Y DOCUMENTOS POR PAGAR DEL EXTERIOR,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20103
+2010401,2010401,OBLIGACIONES CON INSTITUCIONES FINANCIERAS LOCALES,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20104
+2010402,2010402,OBLIGACIONES CON INSTITUCIONES FINANCIERAS DEL EXTERIOR,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20104
+2010501,2010501,PROVISIONES LOCALES,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20105
+2010502,2010502,PROVISIONES DEL EXTERIOR,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20105
+20106,20106,PORCIÓN CORRIENTE DE OBLIGACIONES EMITIDAS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_201
+201070101,201070101,IVA COBRADO EN VENTAS LOCALES,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070102,201070102,IVA COBRADO EN VENTAS DE ACTIVOS FIJOS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070103,201070103,IVA COBRADO EN EXPORTACION DE BIENES,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070104,201070104,IVA COBRADO EN EXPORTACION DE SERVICIOS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070105,201070105,IVA COBRADO EN INGRESOS POR REEMBOLSO COMO INTERMEDIARIO,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070106,201070106,RETENCIONES DE LA FUENTE,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070107,201070107,OTRAS RETENCIONES,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070108,201070108,RETENCIONES DE IVA 10%,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070109,201070109,RETENCIONES DE IVA 20%,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070110,201070110,RETENCIONES DE IVA 30%,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070111,201070111,RETENCIONES DE IVA 50%,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070112,201070112,RETENCIONES DE IVA 70%,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+201070113,201070113,RETENCIONES DE IVA 100%,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_2
+2010702,2010702,IMPUESTO A LA RENTA POR PAGAR DEL EJERCICIO,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20107
+2010703,2010703,OTRAS OBLIGACIONES CORRIENTES CON EL IESS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20107
+2010704,2010704,OTRAS OBLIGACIONES CORRIENTES POR BENEFICIOS DE LEY A EMPLEADOS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20107
+2010705,2010705,PARTICIPACIÓN TRABAJADORES POR PAGAR DEL EJERCICIO,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20107
+2010706,2010706,DIVIDENDOS POR PAGAR,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20107
+20108,20108,CUENTAS POR PAGAR DIVERSAS/RELACIONADAS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_201
+20109,20109,OTROS PASIVOS FINANCIEROS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_201
+20110,20110,ANTICIPOS DE CLIENTES,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_201
+20111,20111,PASIVOS DIRECTAMENTE ASOCIADOS CON LOS ACTIVOS NO CORRIENTES Y OPERACIONES DISCONTINUADAS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_201
+2011201,2011201,JUBILACION PATRONAL,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20112
+2011202,2011202,OTROS BENEFICIOS A LARGO PLAZO PARA LOS EMPLEADOS,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20112
+2011301,2011301,INVENTARIO RECIBIDO NO FACTURADO,0,account.data_account_type_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20113
+20201,20201,PASIVOS POR CONTRATOS DE ARRENDAMIENTO FINANCIERO,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_202
+2020201,2020201,CUENTAS Y DOCUMENTOS POR PAGAR LOCALES,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20202
+2020202,2020202,CUENTAS Y DOCUMENTOS POR PAGAR DEL EXTERIOR,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20202
+2020301,2020301,OBLIGACIONES CON INSTITUCIONES FINANCIERAS LOCALES,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20203
+2020302,2020302,OBLIGACIONES CON INSTITUCIONES FINANCIERAS DEL EXTERIOR,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20203
+2020401,2020401,CUENTAS POR PAGAR DIVERSAS/RELACIONADAS LOCALES,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20204
+2020402,2020402,CUENTAS POR PAGAR DIVERSAS/RELACIONADAS DEL EXTERIOR,1,account.data_account_type_payable,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20204
+20205,20205,OBLIGACIONES EMITIDAS,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_202
+20206,20206,ANTICIPOS DE CLIENTES,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_202
+2020701,2020701,JUBILACION PATRONAL,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20207
+2020702,2020702,OTROS BENEFICIOS NO CORRIENTES PARA LOS EMPLEADOS,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20207
+20208,20208,OTRAS PROVISIONES,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_202
+2020901,2020901,INGRESOS DIFERIDOS,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20209
+2020902,2020902,PASIVOS POR IMPUESTOS DIFERIDOS,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_20209
+20210,20210,OTROS PASIVOS NO CORRIENTES,0,account.data_account_type_non_current_liabilities,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_202
+30101,30101,CAPITAL SUSCRITO o ASIGNADO,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_301
+30102,30102,"(-) CAPITAL SUSCRITO NO PAGADO, ACCIONES EN TESORERÍA",0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_301
+302,302,APORTES DE SOCIOS O ACCIONISTAS PARA FUTURA CAPITALIZACIÓN,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_3
+303,303,PRIMA POR EMISIÓN PRIMARIA DE ACCIONES,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_3
+30401,30401,RESERVA LEGAL,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_304
+30402,30402,RESERVAS FACULTATIVA Y ESTATUTARIA,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_304
+30501,30501,SUPERAVIT DE ACTIVOS FINANCIEROS DISPONIBLES PARA LA VENTA,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_305
+30502,30502,"SUPERAVIT POR REVALUACIÓN DE PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_305
+30503,30503,SUPERAVIT POR REVALUACION DE ACTIVOS INTANGIBLES,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_305
+30504,30504,OTROS SUPERAVIT POR REVALUACION,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_305
+30601,30601,GANANCIAS ACUMULADAS,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_306
+30602,30602,(-) PÉRDIDAS ACUMULADAS,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_306
+30603,30603,RESULTADOS ACUMULADOS PROVENIENTES DE LA ADOPCION POR PRIMERA VEZ DE LAS NIIF,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_306
+30604,30604,RESERVA DE CAPITAL,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_306
+30605,30605,RESERVA POR DONACIONES,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_306
+30606,30606,RESERVA POR VALUACIÓN,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_306
+30607,30607,SUPERÁVIT POR REVALUACIÓN DE INVERSIONES,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_306
+30701,30701,GANANCIA NETA DEL PERIODO,0,account.data_unaffected_earnings,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_307
+30702,30702,(-) PÉRDIDA NETA DEL PERIODO,0,account.data_account_type_equity,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_307
+4101,4101,VENTA DE BIENES,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4102,4102,PRESTACION DE SERVICIOS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4103,4103,CONTRATOS DE CONSTRUCCION,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4104,4104,SUBVENCIONES DEL GOBIERNO,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4105,4105,REGALÍAS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+410601,410601,INTERESES GENERADOS POR VENTAS A CREDITO,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_4106
+410602,410602,OTROS INTERESES GENERADOS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_4106
+4107,4107,DIVIDENDOS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4108,4108,GANANCIA POR MEDICION A VALOR RAZONABLE DE ACTIVOS BIOLOGICOS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4109,4109,OTROS INGRESOS DE ACTIVIDADES ORDINARIAS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4110,4110,(-) DESCUENTO EN VENTAS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4111,4111,(-) DEVOLUCIONES EN VENTAS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4112,4112,(-) BONIFICACIÓN EN PRODUCTO,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4113,4113,(-) OTRAS REBAJAS COMERCIALES,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_41
+4301,4301,DIVIDENDOS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_43
+4302,4302,INTERESES FINANCIEROS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_43
+4303,4303,GANANCIA EN INVERSIONES EN ASOCIADAS / SUBSIDIARIAS Y OTRAS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_43
+4304,4304,VALUACION DE INSTRUMENTOS FINANCIEROS A VALOR RAZONABLE CON CAMBIO EN RESULTADOS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_43
+4305,4305,OTRAS RENTAS,0,account.data_account_type_revenue,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_43
+510101,510101,(+) INVENTARIO INICIAL DE BIENES NO PRODUCIDOS POR LA COMPAÑIA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510102,510102,(+) COMPRAS NETAS LOCALES DE BIENES NO PRODUCIDOS POR LA COMPAÑIA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510103,510103,(+) IMPORTACIONES DE BIENES NO PRODUCIDOS POR LA COMPAÑIA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510104,510104,(-) INVENTARIO FINAL DE BIENES NO PRODUCIDOS POR LA COMPAÑIA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510105,510105,(+) INVENTARIO INICIAL DE MATERIA PRIMA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510106,510106,(+) COMPRAS NETAS LOCALES DE MATERIA PRIMA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510107,510107,(+) IMPORTACIONES DE MATERIA PRIMA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510108,510108,(-) INVENTARIO FINAL DE MATERIA PRIMA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510109,510109,(+) INVENTARIO INICIAL DE PRODUCTOS EN PROCESO,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510110,510110,(-) INVENTARIO FINAL DE PRODUCTOS EN PROCESO,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510111,510111,(+) INVENTARIO INICIAL PRODUCTOS TERMINADOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510112,510112,(-) INVENTARIO FINAL DE PRODUCTOS TERMINADOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510113,510113,COSTO DE VENTAS,0,account.data_account_type_direct_costs,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5101
+510201,510201,MANO DE OBRA DIRECTA SUELDOS Y BENEFICIOS SOCIALES,0,account.data_account_type_direct_costs,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5102
+510202,510202,MANO DE OBRA DIRECTA GASTO PLANES DE BENEFICIOS A EMPLEADOS,0,account.data_account_type_direct_costs,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5102
+510301,510301,MANO DE OBRA INDIRECTA SUELDOS Y BENEFICIOS SOCIALES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5103
+510302,510302,MANO DE OBRA INDIRECTA GASTO PLANES DE BENEFICIOS A EMPLEADOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5103
+510401,510401,"DEPRECIACIÓN PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+510402,510402,DETERIORO O PERDIDAS DE ACTIVOS BIOLOGICOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+510403,510403,"DETERIORO DE PROPIEDAD, PLANTA Y EQUIPO",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+510404,510404,EFECTO VALOR NETO DE REALIZACION DE INVENTARIOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+510405,510405,GASTO POR GARANTIAS EN VENTA DE PRODUCTOS O SERVICIOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+510406,510406,MANTENIMIENTO Y REPARACIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+510407,510407,SUMINISTROS MATERIALES Y REPUESTOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+510408,510408,OTROS COSTOS DE PRODUCCIÓN,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5104
+520101,520101,"GASTOS DE VENTAS SUELDOS, SALARIOS Y DEMÁS REMUNERACIONES",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520102,520102,GASTOS DE VENTAS APORTES A LA SEGURIDAD SOCIAL (incluido fondo de reserva),0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520103,520103,GASTOS DE VENTAS BENEFICIOS SOCIALES E INDEMNIZACIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520104,520104,GASTOS DE VENTAS GASTO PLANES DE BENEFICIOS A EMPLEADOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520105,520105,"GASTOS DE VENTAS HONORARIOS, COMISIONES Y DIETAS A PERSONAS NATURALES",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520106,520106,GASTOS DE VENTAS REMUNERACIONES A OTROS TRABAJADORES AUTÓNOMOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520107,520107,GASTOS DE VENTAS HONORARIOS A EXTRANJEROS POR SERVICIOS OCASIONALES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520108,520108,GASTOS DE VENTAS MANTENIMIENTO Y REPARACIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520109,520109,GASTOS DE VENTAS ARRENDAMIENTO OPERATIVO,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520110,520110,GASTOS DE VENTAS COMISIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520111,520111,GASTOS DE VENTAS PROMOCIÓN Y PUBLICIDAD,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520112,520112,GASTOS DE VENTAS COMBUSTIBLES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520113,520113,GASTOS DE VENTAS LUBRICANTES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520114,520114,GASTOS DE VENTAS SEGUROS Y REASEGUROS (primas y cesiones),0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520115,520115,GASTOS DE VENTAS TRANSPORTE,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520116,520116,"GASTOS DE VENTAS GASTOS DE GESTIÓN (agasajos a accionistas, trabajadores y clientes)",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520117,520117,GASTOS DE VENTAS GASTOS DE VIAJE,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520118,520118,"GASTOS DE VENTAS AGUA, ENERGÍA, LUZ, Y TELECOMUNICACIONES",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520119,520119,GASTOS DE VENTAS NOTARIOS Y REGISTRADORES DE LA PROPIEDAD O MERCANTILES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+52012101,52012101,"GASTOS DE VENTAS PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_depreciation,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520121
+52012102,52012102,GASTOS DE VENTAS PROPIEDADES DE INVERSIÓN,0,account.data_account_type_depreciation,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520121
+52012201,52012201,GASTOS DE VENTAS INTANGIBLES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520122
+52012202,52012202,GASTOS DE VENTAS OTROS ACTIVOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520122
+52012301,52012301,"GASTO DE VENTAS DETERIORO PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520123
+52012306,52012306,GASTO DE VENTAS DETERIORO OTROS ACTIVOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520123
+52012401,52012401,GASTOS DE VENTAS MANO DE OBRA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520124
+52012402,52012402,GASTOS DE VENTAS MATERIALES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520124
+52012403,52012403,GASTOS DE VENTAS COSTOS DE PRODUCCION,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520124
+520125,520125,GASTOS DE VENTAS GASTO POR REESTRUCTURACION,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520126,520126,GASTOS DE VENTAS VALOR NETO DE REALIZACION DE INVENTARIOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520128,520128,GASTOS DE VENTAS OTROS GASTOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5201
+520201,520201,"GASTOS ADMINISTRATIVOS SUELDOS, SALARIOS Y DEMÁS REMUNERACIONES",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520202,520202,GASTOS ADMINISTRATIVOS APORTES A LA SEGURIDAD SOCIAL (incluido fondo de reserva),0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520203,520203,GASTOS ADMINISTRATIVOS BENEFICIOS SOCIALES E INDEMNIZACIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520204,520204,GASTOS ADMINISTRATIVOS GASTO PLANES DE BENEFICIOS A EMPLEADOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520205,520205,"GASTOS ADMINISTRATIVOS HONORARIOS, COMISIONES Y DIETAS A PERSONAS NATURALES",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520206,520206,GASTOS ADMINISTRATIVOS REMUNERACIONES A OTROS TRABAJADORES AUTÓNOMOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520207,520207,GASTOS ADMINISTRATIVOS HONORARIOS A EXTRANJEROS POR SERVICIOS OCASIONALES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520208,520208,GASTOS ADMINISTRATIVOS MANTENIMIENTO Y REPARACIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520209,520209,GASTOS ADMINISTRATIVOS ARRENDAMIENTO OPERATIVO,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520210,520210,GASTOS ADMINISTRATIVOS COMISIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520212,520212,GASTOS ADMINISTRATIVOS COMBUSTIBLES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520213,520213,GASTOS ADMINISTRATIVOS LUBRICANTES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520214,520214,GASTOS ADMINISTRATIVOS SEGUROS Y REASEGUROS (primas y cesiones),0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520215,520215,GASTOS ADMINISTRATIVOS TRANSPORTE,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520216,520216,"GASTOS ADMINISTRATIVOS GASTOS DE GESTIÓN (agasajos a accionistas, trabajadores y clientes)",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520217,520217,GASTOS ADMINISTRATIVOS GASTOS DE VIAJE,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520218,520218,"GASTOS ADMINISTRATIVOS AGUA, ENERGÍA, LUZ, Y TELECOMUNICACIONES",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520219,520219,GASTOS ADMINISTRATIVOS NOTARIOS Y REGISTRADORES DE LA PROPIEDAD O MERCANTILES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520220,520220,"GASTOS ADMINISTRATIVOS IMPUESTOS, CONTRIBUCIONES Y OTROS",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+52022101,52022101,"GASTOS ADMINISTRATIVOS DEPRECIACIONES PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_depreciation,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520221
+52022102,52022102,GASTOS ADMINISTRATIVOS DEPRECIACIONES PROPIEDADES DE INVERSIÓN,0,account.data_account_type_depreciation,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520221
+52022201,52022201,GASTOS ADMINISTRATIVOS INTANGIBLES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520222
+52022202,52022202,GASTOS ADMINISTRATIVOS OTROS ACTIVOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520222
+52022301,52022301,"GASTOS ADMINISTRATIVOS DETERIORO PROPIEDADES, PLANTA Y EQUIPO",0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520223
+52022302,52022302,GASTOS ADMINISTRATIVOS DETERIORO INVENTARIOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520223
+52022303,52022303,GASTOS ADMINISTRATIVOS DETERIORO INSTRUMENTOS FINANCIEROS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520223
+52022304,52022304,GASTOS ADMINISTRATIVOS DETERIORO INTANGIBLES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520223
+52022305,52022305,GASTOS ADMINISTRATIVOS DETERIORO CUENTAS POR COBRAR,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520223
+52022306,52022306,GASTOS ADMINISTRATIVOS DETERIORO OTROS ACTIVOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520223
+52022401,52022401,GASTOS ADMINISTRATIVOS MANO DE OBRA,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520224
+52022402,52022402,GASTOS ADMINISTRATIVOS MATERIALES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520224
+52022403,52022403,GASTOS ADMINISTRATIVOS COSTOS DE PRODUCCION,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_520224
+520225,520225,GASTOS ADMINISTRATIVOS GASTO POR REESTRUCTURACION,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520226,520226,GASTOS ADMINISTRATIVOS VALOR NETO DE REALIZACION DE INVENTARIOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520227,520227,GASTOS ADMINISTRATIVOS GASTO IMPUESTO A LA RENTA (ACTIVOS Y PASIVOS DIFERIDOS),0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520228,520228,GASTOS ADMINISTRATIVOS OTROS GASTOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5202
+520301,520301,INTERESES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5203
+520302,520302,COMISIONES,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5203
+520303,520303,GASTOS DE FINANCIAMIENTO DE ACTIVOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5203
+520304,520304,DIFERENCIA EN CAMBIO,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5203
+520305,520305,OTROS GASTOS FINANCIEROS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5203
+520401,520401,PERDIDA EN INVERSIONES EN ASOCIADAS / SUBSIDIARIAS Y OTRAS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5204
+520402,520402,OTROS GASTOS ADMINISTRATIVOS,0,account.data_account_type_expenses,l10n_ec_niif.ec_chart_template,l10n_ec_niif.account_group_5204

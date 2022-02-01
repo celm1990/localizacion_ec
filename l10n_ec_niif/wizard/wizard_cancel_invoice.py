@@ -52,7 +52,7 @@ class WizardCancelInvoice(models.TransientModel):
         document_type = modules_mapping.get_document_type(internal_type)
         document_name = modules_mapping.get_document_name(document_type)
         ctx = self.env.context.copy()
-        ctx["type"] = type_move
+        ctx["move_type"] = type_move
         for line in self.line_ids:
             partner = line.partner_id and line.partner_id or invoice_partner
             invoice_recs = account_move_model.search(domain + [("l10n_ec_document_number", "=", line.number)])

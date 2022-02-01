@@ -201,7 +201,7 @@ def get_domain(invoice_type, include_state=True):
         "withhold_purchase": [],
     }
     common_domain = [
-        ("type", "=", invoice_type_bd),
+        ("move_type", "=", invoice_type_bd),
         ("l10n_latam_internal_type", "=", l10n_latam_internal_type),
     ]
     domain_state = []

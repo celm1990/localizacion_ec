@@ -374,7 +374,7 @@ class L10nEcWithhold(models.Model):
             "company_id": self.company_id.id,
             "state": "draft",
             "journal_id": self.company_id.l10n_ec_withhold_journal_id.id,
-            "type": "entry",
+            "move_type": "entry",
             "l10n_ec_withhold_id": self.id,
             "currency_id": self.line_ids.mapped("currency_id").id or self.env.company.currency_id.id,
         }

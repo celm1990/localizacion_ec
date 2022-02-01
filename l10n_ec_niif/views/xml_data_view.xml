@@ -27,12 +27,15 @@
             </tree>
         </field>
     </record>
+    
+   
     <record model="ir.ui.view" id="sri_xml_data_form_view">
         <field name="name">sri.xml.data.form</field>
         <field name="model">sri.xml.data</field>
         <field name="arch" type="xml">
             <form create="false" edit="false" delete="false">
                 <header>
+                   
                     <button
                         name="action_create_xml_file"
                         string="Create XML File"
@@ -131,35 +134,35 @@
                                     <field
                                         name="invoice_out_id"
                                         attrs="{'invisible': [('invoice_out_id', '=', False)]}"
-                                        domain="[('l10n_latam_internal_type','=', 'invoice'),('type','=','out_invoice'),('state', '=', 'posted')]"
-                                        context="{'form_view_ref':'account.view_move_form', 'type':'out_invoice', 'journal_type': 'sale'}"
+                                        domain="[('l10n_latam_internal_type','=', 'invoice'),('move_type','=','out_invoice'),('state', '=', 'posted')]"
+                                        context="{'form_view_ref':'account.view_move_form', 'move_type': 'out_invoice', 'journal_type': 'sale'}"
                                         options="{'no_create': True}"
                                     />
                                     <field
                                         name="credit_note_out_id"
                                         attrs="{'invisible': [('credit_note_out_id', '=', False)]}"
-                                        domain="[('type','=','out_refund'), ('state', '=', 'posted')]"
-                                        context="{'form_view_ref':'account.view_move_form', 'type':'out_refund', 'journal_type':'sale_refund'}"
+                                        domain="[('move_type','=','out_refund'), ('state', '=', 'posted')]"
+                                        context="{'form_view_ref':'account.view_move_form', 'move_type': 'out_refund', 'journal_type':'sale_refund'}"
                                         options="{'no_create': True}"
                                     />
                                     <field
                                         name="debit_note_out_id"
                                         attrs="{'invisible': [('debit_note_out_id', '=', False)]}"
-                                        domain="[('l10n_latam_internal_type','=', 'debit_note'),('type','=','out_invoice'), ('state', '=', 'posted')]"
-                                        context="{'form_view_ref':'account.view_move_form', 'type':'out_invoice', 'journal_type': 'sale', 'internal_type': 'debit_note'}"
+                                        domain="[('l10n_latam_internal_type','=', 'debit_note'),('move_type','=','out_invoice'), ('state', '=', 'posted')]"
+                                        context="{'form_view_ref':'account.view_move_form', 'move_type': 'out_invoice', 'journal_type': 'sale', 'internal_type': 'debit_note'}"
                                         options="{'no_create': True}"
                                     />
                                     <field
                                         name="liquidation_id"
                                         attrs="{'invisible': [('liquidation_id', '=', False)]}"
-                                        domain="[('l10n_latam_internal_type','=', 'liquidation'), ('type','=','in_invoice'), ('state', '=', 'posted')]"
-                                        context="{'form_view_ref':'account.view_move_form', 'type':'in_invoice', 'journal_type': 'purchase','internal_type': 'liquidation'}"
+                                        domain="[('l10n_latam_internal_type','=', 'liquidation'), ('move_type', '=', 'in_invoice'), ('state', '=', 'posted')]"
+                                        context="{'form_view_ref':'account.view_move_form', 'move_type': 'in_invoice', 'journal_type': 'purchase','internal_type': 'liquidation'}"
                                         options="{'no_create': True}"
                                     />
                                     <field
                                         name="withhold_id"
                                         attrs="{'invisible': [('withhold_id', '=', False)]}"
-                                        domain="[('state','=','approved'), ('type','=','purchase')]"
+                                        domain="[('state','=','approved'), ('type', '=', 'purchase')]"
                                         context="{'form_view_ref':'ecua_retenciones.view_account_retention_purchase_form'}"
                                         options="{'no_create': True}"
                                     />
@@ -256,6 +259,7 @@
             </form>
         </field>
     </record>
+
     <record model="ir.ui.view" id="sri_xml_data_search_view">
         <field name="name">sri.xml.data.search</field>
         <field name="model">sri.xml.data</field>
@@ -322,7 +326,7 @@
         <field name="name">XML de Firma Electrónica</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sri.xml.data</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree</field>
         <field name="context">{'show_number':True, 'search_default_group_by_state': 1}</field>
         <field name="view_id" ref="sri_xml_data_tree_view" />
     </record>

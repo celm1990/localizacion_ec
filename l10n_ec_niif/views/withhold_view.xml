@@ -93,7 +93,7 @@
             <field name="name">l10n_ec.withhold.line.pivot</field>
             <field name="model">l10n_ec.withhold.line</field>
             <field name="arch" type="xml">
-                <pivot string="Withhold Line">
+                <pivot>
                     <field name="tax_id" type="row" />
                     <field name="issue_date" type="col" />
                     <field name="base_amount_currency" type="measure" />
@@ -207,7 +207,7 @@
                                 <field
                                     name="invoice_id"
                                     attrs="{'invisible': [('l10n_ec_legacy_document', '=', True)], 'readonly': ['|', ('l10n_ec_is_create_from_invoice', '=', True), ('state', '!=', 'draft')]}"
-                                    domain="[('commercial_partner_id', '=', commercial_partner_id), ('state', '=', 'posted'), ('type', '=', 'out_invoice')]"
+                                    domain="[('commercial_partner_id', '=', commercial_partner_id), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice')]"
                                 />
                                 <field
                                     name="l10n_ec_legacy_document_number"
@@ -260,7 +260,7 @@
                                             options="{'no_create': True}"
                                             attrs="{'column_invisible': [('parent.l10n_ec_related_document', '=', True)]}"
                                             context="{'default_invoice_id': invoice_id}"
-                                            domain="[('commercial_partner_id', '=', parent.commercial_partner_id), ('state', '=', 'posted'), ('type', '=', 'out_invoice')]"
+                                            domain="[('commercial_partner_id', '=', parent.commercial_partner_id), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice')]"
                                         />
                                         <field
                                             name="tax_id"

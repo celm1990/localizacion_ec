@@ -403,7 +403,7 @@ class AccountMove(models.Model):
             )
 
     @api.depends(
-        "type",
+        "move_type",
         "l10n_ec_point_of_emission_id",
         "l10n_latam_document_type_id",
     )
@@ -426,7 +426,7 @@ class AccountMove(models.Model):
         super(AccountMove, self)._compute_l10n_latam_document_type()
         for move in self.filtered(lambda x: x.state == "draft" and x.company_id.country_id.code == "EC"):
             if move.l10n_ec_identification_type_id:
-                if move.type == "in_invoice":
+                if move.move_type == "in_invoice":
                     if move.journal_id.l10n_latam_internal_type == "liquidation":
                         move.l10n_latam_document_type_id = (
                             move.l10n_ec_identification_type_id.purchase_liquidation_document_type_id.id
@@ -435,11 +435,11 @@ class AccountMove(models.Model):
                         move.l10n_latam_document_type_id = (
                             move.l10n_ec_identification_type_id.purchase_invoice_document_type_id.id
                         )
-                elif move.type == "in_refund":
+                elif move.move_type == "in_refund":
                     move.l10n_latam_document_type_id = (
                         move.l10n_ec_identification_type_id.purchase_credit_note_document_type_id.id
                     )
-                elif move.type == "out_invoice":
+                elif move.move_type == "out_invoice":
                     if move.l10n_latam_internal_type == "invoice":
                         move.l10n_latam_document_type_id = (
                             move.l10n_ec_identification_type_id.sale_invoice_document_type_id.id
@@ -448,7 +448,7 @@ class AccountMove(models.Model):
                         move.l10n_latam_document_type_id = (
                             move.l10n_ec_identification_type_id.sale_debit_note_document_type_id.id
                         )
-                elif move.type == "out_refund":
+                elif move.move_type == "out_refund":
                     move.l10n_latam_document_type_id = (
                         move.l10n_ec_identification_type_id.sale_credit_note_document_type_id.id
                     )
@@ -470,7 +470,7 @@ class AccountMove(models.Model):
         remaining.l10n_ec_document_number = False
 
     @api.depends(
-        "type",
+        "move_type",
         "partner_id",
         "l10n_latam_document_type_id",
         "l10n_ec_type_emission",
@@ -487,7 +487,7 @@ class AccountMove(models.Model):
     @api.depends(
         "partner_id.commercial_partner_id.l10n_ec_type_sri",
         "l10n_ec_is_exportation",
-        "type",
+        "move_type",
         "company_id",
     )
     def _compute_l10n_ec_identification_type(self):
@@ -497,14 +497,14 @@ class AccountMove(models.Model):
             if move.company_id.country_id.code != "EC" or not move.partner_id.commercial_partner_id.l10n_ec_type_sri:
                 continue
             identification_code = False
-            if move.type in ("in_invoice", "in_refund"):
+            if move.move_type in ("in_invoice", "in_refund"):
                 if move.partner_id.commercial_partner_id.l10n_ec_type_sri == "Ruc":
                     identification_code = "01"
                 elif move.partner_id.commercial_partner_id.l10n_ec_type_sri == "Cedula":
                     identification_code = "02"
                 elif move.partner_id.commercial_partner_id.l10n_ec_type_sri == "Pasaporte":
                     identification_code = "03"
-            elif move.type in ("out_invoice", "out_refund"):
+            elif move.move_type in ("out_invoice", "out_refund"):
                 if not move.l10n_ec_is_exportation:
                     if move.partner_id.commercial_partner_id.l10n_ec_type_sri == "Ruc":
                         identification_code = "04"
@@ -565,13 +565,13 @@ class AccountMove(models.Model):
             rec.l10n_ec_withhold_ids = l10n_ec_withhold_ids
             rec.l10n_ec_withhold_count = len(l10n_ec_withhold_ids)
 
-    @api.depends("type", "line_ids.tax_ids")
+    @api.depends("move_type", "line_ids.tax_ids")
     def _compute_l10n_ec_withhold_required(self):
         group_iva_withhold = self.env.ref("l10n_ec_niif.tax_group_iva_withhold")
         group_rent_withhold = self.env.ref("l10n_ec_niif.tax_group_renta_withhold")
         for rec in self:
             withhold_required = False
-            if rec.type == "in_invoice":
+            if rec.move_type == "in_invoice":
                 withhold_required = any(
                     t.tax_group_id.id in (group_iva_withhold.id, group_rent_withhold.id)
                     for t in rec.line_ids.mapped("tax_ids")
@@ -624,7 +624,7 @@ class AccountMove(models.Model):
         "name",
         "l10n_ec_document_number",
         "company_id",
-        "type",
+        "move_type",
         "l10n_latam_document_type_id",
     )
     def _check_l10n_ec_document_number_duplicity(self):
@@ -694,7 +694,7 @@ class AccountMove(models.Model):
         else:
             domain = super(AccountMove, self)._get_l10n_latam_documents_domain()
         latam_type = self.l10n_latam_internal_type or self.env.context.get("internal_type") or "invoice"
-        if self.type in ("out_refund", "in_refund"):
+        if self.move_type in ("out_refund", "in_refund"):
             latam_type = "credit_note"
         if latam_type and self.l10n_ec_identification_type_id.document_type_ids:
             domain.append(
@@ -719,7 +719,7 @@ class AccountMove(models.Model):
                 and self.l10n_ec_supplier_authorization_id.partner_id != self.partner_id
             ):
                 self.l10n_ec_supplier_authorization_id = False
-            if self.partner_id.l10n_ec_foreign and self.type in ["in_invoice", "in_refund"]:
+            if self.partner_id.l10n_ec_foreign and self.move_type in ["in_invoice", "in_refund"]:
                 self.l10n_ec_type_emission = False
         return res
 
@@ -974,14 +974,14 @@ class AccountMove(models.Model):
         return res
 
     @api.onchange(
-        "type",
+        "move_type",
         "l10n_latam_document_type_id",
         "l10n_ec_point_of_emission_id",
         "invoice_date",
     )
     def _onchange_point_of_emission(self):
         for move in self.filtered(
-            lambda x: x.company_id.country_id.code == "EC" and x.type in ("out_invoice", "out_refund", "in_invoice")
+            lambda x: x.company_id.country_id.code == "EC" and x.move_type in ("out_invoice", "out_refund", "in_invoice")
         ):
             if move.l10n_ec_point_of_emission_id:
                 invoice_type = move.l10n_ec_get_invoice_type()
@@ -1007,7 +1007,7 @@ class AccountMove(models.Model):
     )
     def _onchange_point_of_emission_withhold(self):
         warning = {}
-        for move in self.filtered(lambda x: x.company_id.country_id.code == "EC" and x.type == "in_invoice"):
+        for move in self.filtered(lambda x: x.company_id.country_id.code == "EC" and x.move_type == "in_invoice"):
             if move.l10n_ec_withhold_date and move.invoice_date and move.l10n_ec_withhold_required:
                 if move.l10n_ec_withhold_date < move.invoice_date:
                     move.l10n_ec_withhold_date = move.invoice_date
@@ -1067,7 +1067,7 @@ class AccountMove(models.Model):
     @api.model
     def default_get(self, fields):
         values = super(AccountMove, self).default_get(fields)
-        inv_type = values.get("type", self.type)
+        inv_type = values.get("move_type", self.move_type)
         internal_type = values.get("internal_type") or self.env.context.get("internal_type") or "invoice"
         fields_ec_to_fill = {
             "l10n_ec_point_of_emission_id",
@@ -1125,7 +1125,7 @@ class AccountMove(models.Model):
         res = super(AccountMove, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
-        inv_type = self.env.context.get("type", "out_invoice")
+        inv_type = self.env.context.get("move_type", "out_invoice")
         if view_type == "form" and inv_type == "out_invoice" and "invoice_line_ids" in res["fields"]:
             doc = etree.XML(res["fields"]["invoice_line_ids"]["views"]["tree"]["arch"])
             company = self.env.company
@@ -1148,7 +1148,7 @@ class AccountMove(models.Model):
         if self.filtered(lambda x: x.company_id.country_id.code == "EC") and not default.get(
             "l10n_latam_document_number"
         ):
-            inv_type = default.get("type") or self.type
+            inv_type = default.get("move_type") or self.move_type
             internal_type = (
                 default.get("l10n_latam_internal_type")
                 or self.env.context.get("internal_type")
@@ -1225,7 +1225,7 @@ class AccountMove(models.Model):
             invoice_type = (
                 "out_invoice" if self.env.context.get("original_invoice_type") == "out_refund" else "in_invoice"
             )
-            domain.append(("type", "=", invoice_type))
+            domain.append(("move_type", "=", invoice_type))
         return domain
 
     @api.model
@@ -1331,7 +1331,7 @@ class AccountMove(models.Model):
                 move._l10n_ec_action_validate_authorization_sri()
                 move.validate_quantity_move_line()
                 # proceso de retenciones en compra
-                if move.type == "in_invoice":
+                if move.move_type == "in_invoice":
                     if move.l10n_ec_withhold_required:
                         current_withhold = withhold_model.create(move._prepare_withhold_values())
                         tax_data = move._prepare_withhold_lines_values(current_withhold)
@@ -1375,7 +1375,7 @@ class AccountMove(models.Model):
             default_invoice_id=self.id,
         )
         # no mostrar botones de crear/editar en retenciones de compra
-        if self.type == "in_invoice":
+        if self.move_type == "in_invoice":
             action["context"].update({"create": False, "edit": False})
         return action
 
@@ -1417,7 +1417,7 @@ class AccountMove(models.Model):
         # * no permitir emitir Nota de credito ni factura de proveedor
         if self.l10n_ec_consumidor_final:
             if (
-                self.type == "out_invoice"
+                self.move_type == "out_invoice"
                 and float_compare(
                     self.amount_total,
                     self.company_id.l10n_ec_consumidor_final_limit,
@@ -1432,7 +1432,7 @@ class AccountMove(models.Model):
                         self.company_id.l10n_ec_consumidor_final_limit,
                     )
                 )
-            if self.type in ("in_invoice", "in_refund", "out_refund"):
+            if self.move_type in ("in_invoice", "in_refund", "out_refund"):
                 raise UserError(_("You can't make bill or refund to final customer on ecuadorian company"))
         if self.l10n_ec_invoice_type in ("in_invoice", "in_refund", "debit_note_in"):
             if not self.commercial_partner_id.vat:
@@ -1457,7 +1457,7 @@ class AccountMove(models.Model):
                     raise UserError(_("You must enter the authorization of the third party to continue"))
         # notas de credito validar monto no sea mayor al de factura
         if (
-            self.type in ["in_refund", "out_refund"]
+            self.move_type in ["in_refund", "out_refund"]
             and self.l10n_ec_original_invoice_id
             and self.company_id.l10n_ec_cn_reconcile_policy == "restrict"
         ):
@@ -1537,7 +1537,7 @@ class AccountMove(models.Model):
         # validaciones en facturas de proveedor para emitir retenciones
         # * tener 1 impuesto de retencion IVA y 1 impuesto de retencion RENTA
         # * no permitir retener IVA si no hay impuesto de IVA(evitar IVA 0)
-        if self.type == "in_invoice":
+        if self.move_type == "in_invoice":
             if (
                 self.partner_id.country_id.code == "EC"
                 and not self.l10n_ec_tax_support_id
@@ -1901,7 +1901,7 @@ class AccountMove(models.Model):
         internal_type = (
             self.env.context.get("internal_type") or self.l10n_latam_document_type_id.internal_type or "invoice"
         )
-        return modules_mapping.l10n_ec_get_invoice_type(self.type, internal_type, False)
+        return modules_mapping.l10n_ec_get_invoice_type(self.move_type, internal_type, False)
 
     def l10n_ec_validate_fields_required_fe(self):
         message_list = []
@@ -1927,7 +1927,7 @@ class AccountMove(models.Model):
                     )
                 if refund.currency_id.is_zero(refund.total_invoice):
                     message_list.append(_("Amount total for refunds must be greater than zero."))
-        if self.type == "out_refund":
+        if self.move_type == "out_refund":
             if not self.l10n_ec_original_invoice_id and not self.l10n_ec_legacy_document_number:
                 message_list.append(
                     _("Credit Note: %s has not document to modified, please review.") % (self.display_name)
@@ -1958,7 +1958,7 @@ class AccountMove(models.Model):
             xml_recs |= current_xml_recs
         # proceso de retenciones, hacerlo indistinto si la factura o liquidacion de compra tiene xml
         for invoice in self:
-            if invoice.type == "in_invoice":
+            if invoice.move_type == "in_invoice":
                 for retention in invoice.l10n_ec_withhold_ids:
                     if retention.point_of_emission_id.type_emission != "electronic":
                         continue
@@ -2273,7 +2273,7 @@ class AccountMove(models.Model):
                 currency=self.currency_id,
                 product=line.product_id,
                 partner=self.partner_id,
-                is_refund=self.type in ("out_refund", "in_refund"),
+                is_refund=self.move_type in ("out_refund", "in_refund"),
             )
             # impuestos de iva 0 no agregan reparticion de impuestos,
             # por ahora se consideran base_iva_0, verificar esto
@@ -3010,7 +3010,7 @@ class AccountMoveLine(models.Model):
                 currency=move.currency_id,
                 product=move_line.product_id,
                 partner=move.partner_id,
-                is_refund=move.type in ("out_refund", "in_refund"),
+                is_refund=move.move_type in ("out_refund", "in_refund"),
             )
             # impuestos de iva 0 no agregan reparticion de impuestos,
             # por ahora se consideran base_iva_0, verificar esto

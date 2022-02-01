@@ -1,7 +1,7 @@
 {
     "name": "Ecuador - Accounting IFRS",
-    "version": "13.0.1.2.2",
-    "category": "Localization",
+    "version": "15.0.1.0.0",
+    "category": "Accounting/Localizations/Account Charts",
     "author": "Spearhead",
     "website": "https://www.spearhead.global",
     "license": "LGPL-3",
@@ -15,6 +15,7 @@
         "account_debit_note",
         "portal",
         "mail",
+        "web",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -75,8 +76,15 @@
         "views/l10n_ec_portal_common_electronic_templates.xml",
         "views/l10n_ec_portal_withhold_templates.xml",
         "views/res_config_view.xml",
-        "views/assets.xml",
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'l10n_ec_niif/static/src/js/*.js',
+        ],
+        'web.report_assets_common': [
+            'l10n_ec_niif/static/src/scss/*.scss',
+        ]
+    },
     "demo": [
         "demo/agency_data.xml",
         "demo/partner_data.xml",

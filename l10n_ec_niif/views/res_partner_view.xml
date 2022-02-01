@@ -86,6 +86,9 @@
                 </xpath>
             </field>
         </record>
+        
+        <!--NO ENCONTRADO EN OODOO 15-->
+        <!--
         <record model="ir.ui.view" id="res_partner_short_form_view">
             <field name="name">res.partner.form</field>
             <field name="model">res.partner</field>
@@ -111,6 +114,8 @@
                 </field>
             </field>
         </record>
+        -->
+
         <record model="ir.ui.view" id="view_partner_simple_form">
             <field name="name">res.partner.form</field>
             <field name="model">res.partner</field>
