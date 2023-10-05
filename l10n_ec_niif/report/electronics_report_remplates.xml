@@ -84,6 +84,10 @@
                                 <strong>Agente de Retención Resolución No.</strong>
                                 <span t-field="company.l10n_ec_retention_resolution" />
                             </t>
+                            <t t-if="company.l10n_ec_rimpe_regime">
+                                <br />
+                                <strong>CONTRIBUYENTE RÉGIMEN RIMPE</strong>
+                            </t>
                         </div>
                     </td>
                     <td>
@@ -146,9 +150,14 @@
                 <span t-esc="partner.street or (partner.child_ids and partner.child_ids[0].street) or ''" />
                 <br />
             </t>
-            <t t-if="partner.phone or (partner.child_ids and partner.child_ids[0].phone)" name="phone">
+            <t
+                t-set="info_phone"
+                t-value="partner.phone or partner.mobile or
+            (partner.child_ids and (partner.child_ids[0].phone or  partner.child_ids[0].mobile)) or ''"
+            />
+            <t t-if="info_phone" name="phone">
                 <strong>Telefono:</strong>
-                <span t-esc="partner.phone or (partner.child_ids and partner.child_ids[0].phone) or ''" />
+                <span t-esc="info_phone" />
                 <br />
             </t>
             <t t-if="partner.email or (partner.child_ids and partner.child_ids[0].email)" name="email">

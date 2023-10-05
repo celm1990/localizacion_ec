@@ -8,16 +8,16 @@ class ResCompany(models.Model):
 
     @api.onchange("country_id")
     def onchange_country(self):
-        """ Ecuadorian companies use round_globally as tax_calculation_rounding_method """
+        """Ecuadorian companies use round_globally as tax_calculation_rounding_method"""
         for rec in self.filtered(lambda x: x.country_id == self.env.ref("base.ec")):
             rec.tax_calculation_rounding_method = "round_globally"
 
     def _localization_use_documents(self):
-        """ Ecuadorian localization use documents """
+        """Ecuadorian localization use documents"""
         self.ensure_one()
         return True if self.country_id == self.env.ref("base.ec") else super()._localization_use_documents()
 
-    l10n_ec_consumidor_final_limit = fields.Float(string="Invoice Sales Limit Final Consumer", default=200.0)
+    l10n_ec_consumidor_final_limit = fields.Float(string="Invoice Sales Limit Final Consumer", default=50.0)
 
     l10n_ec_request_sri_validation_cancel_doc = fields.Boolean(
         string="Request sri validation for cancel documents", required=False
@@ -68,7 +68,7 @@ class ResCompany(models.Model):
             ("restrict", "Restrict greater than Invoice"),
             ("open", "Always Allow"),
         ],
-        string=u"Conciliation Policy for Credit Note",
+        string="Conciliation Policy for Credit Note",
         default="restrict",
     )
     # campos para facturacion electronica
@@ -146,14 +146,13 @@ class ResCompany(models.Model):
     l10n_ec_string_ride_detail2 = fields.Char("Nombre Detalle 2")
     l10n_ec_string_ride_detail3 = fields.Char("Nombre Detalle 3")
 
-    l10n_ec_sri_payment_id = fields.Many2one("l10n_ec.sri.payment.method", string=u"S.R.I Payment Method")
+    l10n_ec_sri_payment_id = fields.Many2one("l10n_ec.sri.payment.method", string="S.R.I Payment Method")
 
-    @api.model
     def get_contribuyente_data(self, date=None):
         sri_resolution_model = self.env["l10n_ec.sri.company.resolution"]
         if not date:
             date = fields.Date.context_today(self)
-        sri_resolution_recs = sri_resolution_model.search([("date_from", "<=", date)])
+        sri_resolution_recs = sri_resolution_model.search([("date_from", "<=", date), ("company_id", "=", self.id)])
         sri_resolution_rec = sri_resolution_model.browse()
         for sri_resolution in sri_resolution_recs:
             if not sri_resolution.date_to or sri_resolution.date_to >= date:
@@ -181,3 +180,26 @@ class ResCompany(models.Model):
     l10n_ec_retention_resolution = fields.Char(string="Retention Resolution")
     l10n_ec_retention_resolution_number = fields.Integer(string="Retention Resolution No.")
     l10n_ec_microenterprise_regime_taxpayer = fields.Boolean(string="Microenterprise Regime Taxpayer", required=False)
+    l10n_ec_rimpe_regime = fields.Boolean(string="Régimen RIMPE", required=False)
+    l10n_ec_authorization_expired_days = fields.Integer(
+        string="Notificar expiración antes de (días)",
+        default=lambda *a: 5,
+        help="Cuando el número de días antes de expirar la autorización sea "
+        "menor o igual al número configurado, se enviará la notificación correspondiente",
+    )
+
+    @api.model
+    def date_expire_send_mail(self):
+        keys_expired = self.env["sri.key.type"].search([])
+        notification = []
+        company = self.env.company
+        authorization_days = company.l10n_ec_authorization_expired_days
+        for key in keys_expired:
+            expiration_date = key.expire_date
+            total_date = expiration_date - fields.Date.context_today(self)
+            days = round(total_date.days + (total_date.seconds / 86400.0), 0)
+            if days <= authorization_days:
+                notification.append("Nombre: " + key.name)
+                notification.append("Fecha expiración: " + str(key.expire_date))
+                notification.append("La llave expira en " + str(days) + " dias")
+        return notification

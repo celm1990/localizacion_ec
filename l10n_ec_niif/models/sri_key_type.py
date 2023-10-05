@@ -201,8 +201,23 @@ class SriKeyType(models.Model):
         return etree.tostring(doc, encoding="UTF-8", pretty_print=True).decode()
 
     @api.model
+    def _get_keys_expired(self, company):
+        keys_expired = self.env["sri.key.type"].search([("company_id", "=", company.id)])
+        keys_expire = False
+        authorization_days = company.l10n_ec_authorization_expired_days
+        for key in keys_expired:
+            total_date = key.expire_date - fields.Date.context_today(self)
+            days = round(total_date.days + (total_date.seconds / 86400.0), 0)
+            if days <= authorization_days:
+                keys_expire = True
+        return keys_expire
+
+    @api.model
     def recompute_date_expire(self):
+        all_companies = self.env["res.company"].search([])
         template_mail_notification_keys_expired = self.env.ref("l10n_ec_niif.email_template_keys_expired")
-        company = self.env.company
-        template_mail_notification_keys_expired.send_mail(company.id)
+        for company in all_companies:
+            keys_expired = self.with_context(allowed_company_ids=company.ids)._get_keys_expired(company)
+            if keys_expired:
+                template_mail_notification_keys_expired.send_mail(company.id)
         return True

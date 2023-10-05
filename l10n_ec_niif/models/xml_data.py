@@ -406,6 +406,8 @@ class SriXmlData(models.Model):
             SubElement(infoTributaria, "agenteRetencion").text = util_model._clean_str(
                 str(company.l10n_ec_retention_resolution_number) or ""
             )
+        if company.l10n_ec_rimpe_regime and False:
+            SubElement(infoTributaria, "contribuyenteRimpe").text = "CONTRIBUYENTE RÉGIMEN RIMPE"
         return clave_acceso, node
 
     def check_xsd(self, xml_string, xsd_file_path):

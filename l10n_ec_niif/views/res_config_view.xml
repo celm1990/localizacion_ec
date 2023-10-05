@@ -15,53 +15,60 @@
                         groups="account.group_account_manager"
                     >
                         <h2>Invoice</h2>
-                        <div class="col-12 col-lg-6 o_setting_box" id="sri_invoice">
-                            <div class="o_setting_left_pane">
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="sri_invoice">
+                                <div class="o_setting_left_pane">
 
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Final Consumer</span>
-                                <div class="text-muted">
-                                    Limit for billing in sales for final consumer, total amount
                                 </div>
-                                <div class="content-group">
-                                    <div class="row mt16">
-                                        <label
-                                            string="Limit Amount"
-                                            for="l10n_ec_consumidor_final_limit"
-                                            class="col-lg-3 o_light_label"
-                                        />
-                                        <field name="l10n_ec_consumidor_final_limit" class="text-center oe_inline" />
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Final Consumer</span>
+                                    <div class="text-muted">
+                                        Limit for billing in sales for final consumer, total amount
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="row mt16">
+                                            <label
+                                                string="Limit Amount"
+                                                for="l10n_ec_consumidor_final_limit"
+                                                class="col-lg-3 o_light_label"
+                                            />
+                                            <field
+                                                name="l10n_ec_consumidor_final_limit"
+                                                class="text-center oe_inline"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <h2>Credit Note</h2>
-                        <div class="col-12 col-lg-6 o_setting_box" id="sri_invoice">
-                            <div class="o_setting_left_pane">
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="sri_credit_note">
+                                <div class="o_setting_left_pane">
 
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <div class="row">
-                                    <label
-                                        for="l10n_ec_cn_reconcile_policy"
-                                        class="col-5"
-                                        string="Amounts Conciliation Policy"
-                                    />
-                                    <field name="l10n_ec_cn_reconcile_policy" widget="radio" />
-                                    <div class="text-muted">
-                                        <ul>
-                                            <li>
-                                                <b>Restrict greater than Invoice:</b>
-                                                When Credit Note is greather than invoice, raise exception and cannot
-                                                validate
-                                            </li>
-                                            <li>
-                                                <b>Always Allow:</b>
-                                                Credit Notes are not compared with Invoice amount total, can be validate
-                                                without restriction
-                                            </li>
-                                        </ul>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <div class="row">
+                                        <label
+                                            for="l10n_ec_cn_reconcile_policy"
+                                            class="col-5"
+                                            string="Amounts Conciliation Policy"
+                                        />
+                                        <field name="l10n_ec_cn_reconcile_policy" widget="radio" />
+                                        <div class="text-muted">
+                                            <ul>
+                                                <li>
+                                                    <b>Restrict greater than Invoice:</b>
+                                                    When Credit Note is greather than invoice, raise exception and cannot
+                                                    validate
+                                                </li>
+                                                <li>
+                                                    <b>Always Allow:</b>
+                                                    Credit Notes are not compared with Invoice amount total, can be validate
+                                                    without restriction
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +126,7 @@
                                     <span class="o_form_label">Withhold Credit Card</span>
                                     <div class="text-muted">Accounting config for withhold on credit Card</div>
                                     <div class="content-group">
-                                        <div class="row mt16">
+                                        <div id='account_vat_cc' class="row mt16">
                                             <label
                                                 string="IVA Account"
                                                 for="l10n_ec_withhold_iva_credit_card_account_id"
@@ -127,7 +134,7 @@
                                             />
                                             <field name="l10n_ec_withhold_iva_credit_card_account_id" />
                                         </div>
-                                        <div class="row mt16">
+                                        <div class="row mt16" id='account_rent_cc'>
                                             <label
                                                 string="Rent Account"
                                                 for="l10n_ec_withhold_rent_credit_card_account_id"
@@ -310,6 +317,15 @@
                                             options="{'no_quick_create': True}"
                                             class="o_light_label"
                                         />
+                                    </div>
+                                </div>
+                                <div class="o_setting_left_pane">
+
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <div class="row">
+                                        <label for="l10n_ec_authorization_expired_days" class="col-5" />
+                                        <field name="l10n_ec_authorization_expired_days" class="o_light_label" />
                                     </div>
                                 </div>
                             </div>
@@ -633,6 +649,14 @@
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="l10n_ec_microenterprise_regime_taxpayer" />
+                                </div>
+                            </div>
+                            <div id="option_l10n_ec_rimpe_regime" class="col-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="l10n_ec_rimpe_regime" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="l10n_ec_rimpe_regime" />
                                 </div>
                             </div>
                         </div>

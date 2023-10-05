@@ -14,6 +14,8 @@ _logger = logging.getLogger(__name__)
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    l10n_is_bank = fields.Boolean(string="Is bank", required=False)
+
     @api.depends("country_id", "l10n_latam_identification_type_id")
     def _compute_l10n_ec_foreign(self):
         it_pasaporte = self.env.ref("l10n_ec_niif.it_pasaporte", False)
@@ -178,13 +180,31 @@ class ResPartner(models.Model):
         elif len(vat) == 10:
             return ci.is_valid(vat), "Cedula"
         elif len(vat) == 13:
+            valid = False
+            type_doc = ""
             if vat[2] == "6":
                 if ci.is_valid(vat[:10]):
-                    return True, "Ruc"
-                else:
-                    return ruc.is_valid(vat), "Ruc"
-            else:
-                return ruc.is_valid(vat), "Ruc"
+                    valid = True
+                    type_doc = "Ruc"
+                elif ruc.is_valid(vat):
+                    valid = True
+                    type_doc = "Ruc"
+            elif ruc.is_valid(vat):
+                valid = True
+                type_doc = "Ruc"
+            if not valid:
+                # cuando no pasa el algoritmo de modulo 11
+                # intentar validarlo contra el SRI
+                # si es un ruc valido, me devolvera la data del contribuyente
+                # caso contrario me devolvera un mensaje
+                # pero si no obtengo respuesta posiblemente este caido el SRI<data estara vacio>
+                # NOTA: si el usuario activo l10n_ec_force_validate_nif se omitira la validacion
+                data = self._get_partner_info_from_sri(vat)
+                if data:
+                    if data.get("razonSocial") or not data.get("mensaje"):
+                        valid = True
+                        type_doc = "Ruc"
+            return valid, type_doc
         else:
             return False, False
 
@@ -209,22 +229,12 @@ class ResPartner(models.Model):
         if self.sudo().env.ref("base.module_base_vat").state == "installed":
             ecuadorian_partners = self.filtered(lambda partner: partner.country_id == self.env.ref("base.ec"))
             for partner in ecuadorian_partners:
-                if partner.vat:
-                    if partner.l10n_latam_identification_type_id.id in (it_ruc.id, it_cedula.id):
+                if partner.vat and it_ruc and it_cedula:
+                    if partner.l10n_latam_identification_type_id and partner.l10n_latam_identification_type_id.id in (
+                        it_ruc.id,
+                        it_cedula.id,
+                    ):
                         valid, vat_type = self.check_vat_ec(partner.vat)
-                        if not valid:
-                            # cuando no pasa el algoritmo de modulo 11
-                            # intentar validarlo contra el SRI
-                            # si es un ruc valido, me devolvera la data del contribuyente
-                            # caso contrario me devolvera un mensaje
-                            # pero si no obtengo respuesta posiblemente este caido el SRI<data estara vacio>
-                            # NOTA: si el usuario activo l10n_ec_force_validate_nif se omitira la validacion
-                            data = self._get_partner_info_from_sri(partner.vat)
-                            if data:
-                                if data.get("razonSocial"):
-                                    valid = True
-                                elif not data.get("mensaje"):
-                                    valid = True
                         if not valid and not partner.l10n_ec_force_validate_nif:
                             raise UserError(
                                 _(

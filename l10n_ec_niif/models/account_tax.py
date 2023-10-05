@@ -1,4 +1,8 @@
-from odoo import api, fields, models
+import logging
+
+from odoo import api, fields, models, tools
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountTaxGroup(models.Model):
@@ -54,6 +58,55 @@ class AccountTax(models.Model):
                             "percent": percent,
                         }
                     )
+        return True
+
+    @api.model
+    def _l10n_ec_action_update_tax_tags(self, tax_list_data):
+        """
+        Funcion utilitaria pasar usar en script de migracion
+        cuando se necesite actualizar etiquetas de impuestos ya creados
+        :param tax_list_data: lista de tuplas(id_xml_tax, diccionario(data para etiquetas))
+            data para etiquetas tendra como claves: base|tax
+            y cada uno sera una lista de id_xml de las etiquetas a asociar
+            ejemplo para corregir las etiquetas del impuesto 302
+            tax_list = [
+                ("tax_302", {"base": ["tag_f103_302"], "tax": ["tag_f103_352"]}),
+            ]
+        """
+        all_companies = self.env["res.company"].search([])
+        for company_id in all_companies.ids:
+            for tax_idxml, repartition_data in tax_list_data:
+                try:
+                    with self.env.cr.savepoint():
+                        tax_id_xml = f"l10n_ec_niif.{company_id}_{tax_idxml}"
+                        current_tax = self.env.ref(tax_id_xml, False)
+                        if not current_tax:
+                            continue
+                        for repartition_type, tags_list in repartition_data.items():
+                            tag_ids = []
+                            for tag_idxml in tags_list:
+                                tag = self.env.ref(f"l10n_ec_niif.{tag_idxml}", False)
+                                if tag:
+                                    tag_ids.append(tag.id)
+                            if not tag_ids:
+                                continue
+                            current_tax.invoice_repartition_line_ids.filtered(
+                                lambda x: x.repartition_type == repartition_type
+                            ).write(
+                                {
+                                    "tag_ids": [(6, 0, tag_ids)],
+                                }
+                            )
+                            current_tax.refund_repartition_line_ids.filtered(
+                                lambda x: x.repartition_type == repartition_type
+                            ).write(
+                                {
+                                    "tag_ids": [(6, 0, tag_ids)],
+                                }
+                            )
+                except Exception as ex:
+                    _logger.error(tools.ustr(ex), exc_info=True)
+
         return True
 
 

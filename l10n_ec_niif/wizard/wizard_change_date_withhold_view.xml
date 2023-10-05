@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="wizard_change_date_withhold_view_form" model="ir.ui.view">
+            <field name="name">wizard_change_date_withhold_view_form</field>
+            <field name="model">wizard.change.date.withhold</field>
+            <field name="arch" type="xml">
+                <form string="wizard_change_date_withhold_form">
+                    <sheet>
+                        <group>
+                            <field name="l10n_ec_issue_date" required="1" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Save Change" name="change_date_withhold" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_change_date_withhold_view_form" model="ir.actions.act_window">
+        <field name="name">Change Withhold Date</field>
+        <field name="res_model">wizard.change.date.withhold</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_change_date_withhold_view_form" />
+        <field name="target">new</field>
+    </record>
+
+    </data>
+</odoo>

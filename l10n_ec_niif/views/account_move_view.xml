@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
+        <record id="account_move_tree_view" model="ir.ui.view">
+            <field name="name">account.move.tree</field>
+            <field name="model">account.move</field>
+            <field name="priority">100</field>
+            <field name="inherit_id" ref="account.view_invoice_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_untaxed_signed']" position="after">
+                    <field name="l10n_ec_base_iva" optional="hide" sum="Base IVA" />
+                    <field name="l10n_ec_base_iva_0" optional="hide" sum="Base IVA 0" />
+                    <field name="l10n_ec_iva" optional="hide" sum="IVA" />
+                </xpath>
+            </field>
+        </record>
+
         <record id="account_move_form_view_latam" model="ir.ui.view">
             <field name="name">account.move.form</field>
             <field name="model">account.move</field>
@@ -276,9 +290,12 @@
                     <page
                         string="Invoice Refund"
                         name="l10n_ec_reembolso"
-                        attrs="{'invisible': [('l10n_ec_invoice_type', 'not in', ('liquidation', 'in_invoice'))]}"
+                        attrs="{'invisible': [('l10n_ec_invoice_type', 'not in', ('liquidation', 'in_invoice', 'out_invoice'))]}"
                     >
-                        <field name="l10n_ec_refund_ids">
+                        <field
+                            name="l10n_ec_refund_ids"
+                            attrs="{'readonly': [('l10n_ec_invoice_type', 'in', ('liquidation', 'out_invoice')), ('state', '!=', 'draft')]}"
+                        >
                             <tree>
                                 <field name="document_number" />
                                 <field name="partner_id" />
@@ -533,6 +550,16 @@
             <field name="mode">primary</field>
             <field name="inherit_id" ref="account.view_move_form" />
             <field name="arch" type="xml">
+                <header position="inside">
+                    <button
+                        name="action_invoice_sent"
+                        string="Send by Email"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': ['|', ('state', '=', 'draft'), ('type', '!=', 'in_invoice'),
+                            ('l10n_latam_internal_type', '!=', 'liquidation')]}"
+                    />
+                </header>
                 <!--                cambiar atributo para que en liquidacion de compras si es electronica no se permita cambiar el numero de documento-->
                 <xpath expr="//field[@name='l10n_latam_document_number']" position="attributes">
                     <attribute name="force_save">1</attribute>

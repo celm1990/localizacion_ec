@@ -88,20 +88,23 @@ class L10necUtils(models.AbstractModel):
         return record_id
 
     @api.model
-    def _clean_str(self, string_to_reeplace, list_characters=None, separator=""):
+    def _clean_str(self, string_to_reeplace, list_characters=None, separator="", skip_character=None):
         """
         Reemplaza caracteres por otros caracteres especificados en la lista
         @param string_to_reeplace:  string a la cual reemplazar caracteres
         @param list_characters:  Lista de tuplas con dos elementos(elemento uno el caracter a reemplazar, elemento dos caracter que reemplazara al elemento uno)
         @return: string con los caracteres reemplazados
         """
+        if not skip_character:
+            skip_character = []
         if not string_to_reeplace:
             return string_to_reeplace
         else:
             string_to_reeplace = string_to_reeplace.lstrip()
         caracters = [".", ",", "-", "\a", "\b", "\f", "\n", "\r", "\t", "\v"]
         for c in caracters:
-            string_to_reeplace = string_to_reeplace.replace(c, separator)
+            if c not in skip_character:
+                string_to_reeplace = string_to_reeplace.replace(c, separator)
         if not list_characters:
             list_characters = [
                 ("á", "a"),
@@ -158,6 +161,7 @@ class L10necUtils(models.AbstractModel):
         # en range el ultimo numero no es inclusivo asi que agregarle uno mas
         # espacio en blanco
         range_ascii = [32]
+        range_ascii += [ord(character) for character in skip_character]
         # numeros
         range_ascii += list(range(48, 57 + 1))
         # letras mayusculas

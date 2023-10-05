@@ -1,6 +1,6 @@
 {
     "name": "Ecuador - Accounting IFRS",
-    "version": "13.0.1.2.2",
+    "version": "13.0.1.2.4",
     "category": "Localization",
     "author": "Spearhead",
     "website": "https://www.spearhead.global",
@@ -52,6 +52,7 @@
         "wizard/wizard_cancel_invoice.xml",
         "wizard/account_debit_note_view.xml",
         "wizard/wizard_cancel_electronic_documents_view.xml",
+        "wizard/wizard_change_date_withhold_view.xml",
         "views/res_partner_view.xml",
         "views/tax_support_view.xml",
         "views/identification_type_view.xml",

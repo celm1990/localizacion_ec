@@ -18,7 +18,7 @@
 "access_l10n_ec_point_of_emission_document_sequence_user","access_l10n_ec_point_of_emission_document_sequence_user","l10n_ec_niif.model_l10n_ec_point_of_emission_document_sequence","account.group_account_user",1,1,1,0
 "access_l10n_ec_point_of_emission_document_sequence_manager","access_l10n_ec_point_of_emission_document_sequence_manager","l10n_ec_niif.model_l10n_ec_point_of_emission_document_sequence","account.group_account_manager",1,1,1,1
 "access_l10n_ec_withhold_all","access_l10n_ec_withhold_all","l10n_ec_niif.model_l10n_ec_withhold",,1,0,0,0
-"access_l10n_ec_withhold_user","access_l10n_ec_withhold_user","l10n_ec_niif.model_l10n_ec_withhold","account.group_account_user",1,1,1,0
+"access_l10n_ec_withhold_user","access_l10n_ec_withhold_user","l10n_ec_niif.model_l10n_ec_withhold","account.group_account_user",1,1,1,1
 "access_l10n_ec_withhold_manager","access_l10n_ec_withhold_manager","l10n_ec_niif.model_l10n_ec_withhold","account.group_account_manager",1,1,1,1
 "access_l10n_ec_withhold_line_all","access_l10n_ec_withhold_line_all","l10n_ec_niif.model_l10n_ec_withhold_line",,1,0,0,0
 "access_l10n_ec_withhold_line_user","access_l10n_ec_withhold_line_user","l10n_ec_niif.model_l10n_ec_withhold_line","account.group_account_user",1,1,1,1

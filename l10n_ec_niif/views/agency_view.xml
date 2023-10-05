@@ -11,7 +11,7 @@
                     <field name="number" />
                     <field name="address_id" />
                     <field name="printer_point_ids" widget="many2many_tags" />
-                    <field name="active" widget="boolean_toggle" />
+                    <field name="active" widget="boolean_toggle" groups="base.group_system" />
                 </tree>
             </field>
         </record>
@@ -47,13 +47,13 @@
                                         <field name="name" />
                                         <field name="type_emission" />
                                         <field name="number" />
-                                        <field name="active" />
+                                        <field name="active" groups="base.group_system" />
                                     </tree>
                                     <form string="Point of Emission">
                                         <group>
                                             <field name="name" />
                                             <field name="number" attrs="{'readonly': [('count_invoice', '>', '0')]}" />
-                                            <field name="active" />
+                                            <field name="active" groups="base.group_system" />
                                             <field
                                                 name="type_emission"
                                                 attrs="{'readonly': [('count_invoice', '>', '0')]}"

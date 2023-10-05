@@ -62,6 +62,15 @@
                         </group>
                     </page>
                 </xpath>
+                 <xpath expr="//page[@name='internal_notes']" position="before">
+                     <page name="credit_card" string="Credit Card">
+                         <group>
+                             <group>
+                                 <field name="l10n_is_bank" />
+                             </group>
+                         </group>
+                     </page>
+                 </xpath>
                 <field name="email" position="attributes">
                     <attribute name="attrs">{'required': [('l10n_ec_require_email_electronic', '=', True)]}</attribute>
                 </field>
@@ -160,7 +169,7 @@
                     <field
                         string="Ruc/Cédula/Pasaporte"
                         name="vat"
-                        filter_domain="['|','|',('display_name','ilike',self),('vat','=',self),('email','ilike',self)]"
+                        filter_domain="['|','|','|','|', ('display_name','ilike',self),('vat','ilike',self),('email','ilike',self),('mobile','ilike',self), ('phone','ilike',self)]"
                     />
                 </xpath>
                 <field name="name" position="attributes">

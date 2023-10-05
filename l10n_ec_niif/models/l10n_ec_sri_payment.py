@@ -8,7 +8,7 @@ class L10nEcSriPaymentMethod(models.Model):
 
     code = fields.Char(string="Code", required=True)
     name = fields.Char(string="Name", required=True)
-    active = fields.Boolean(u"Active?", default=lambda *a: True)
+    active = fields.Boolean("Active?", default=lambda *a: True)
 
     _sql_constraints = [
         (

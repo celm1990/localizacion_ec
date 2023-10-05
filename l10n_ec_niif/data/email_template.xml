@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<odoo noupdate="0">
+<odoo noupdate="1">
     <record id="email_template_e_invoice" model="mail.template">
         <field name="name">Factura Electronica</field>
         <field name="email_from">

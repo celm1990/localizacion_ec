@@ -33,6 +33,7 @@ class L10nEcWithhold(models.Model):
         ondelete="restrict",
         default=lambda self: self.env.company,
     )
+    l10n_ec_credit_card_account_id = fields.Many2one("account.account", string="Account(Credit Card)", readonly=True)
     currency_id = fields.Many2one(
         "res.currency",
         string="Currency",
@@ -586,6 +587,7 @@ class L10nEcWithhold(models.Model):
     def l10n_ec_action_generate_xml_data(self, node_root, xml_version):
         util_model = self.env["l10n_ec.utils"]
         company = self.company_id or self.env.company
+        currency = company.currency_id
         infoCompRetencion = SubElement(node_root, "infoCompRetencion")
         SubElement(infoCompRetencion, "fechaEmision").text = self.issue_date.strftime(util_model.get_formato_date())
         address = company.partner_id.street
@@ -596,9 +598,18 @@ class L10nEcWithhold(models.Model):
         SubElement(infoCompRetencion, "obligadoContabilidad").text = util_model.get_obligado_contabilidad(
             company.partner_id.property_account_position_id
         )
-        SubElement(
-            infoCompRetencion, "tipoIdentificacionSujetoRetenido"
-        ).text = self.partner_id.commercial_partner_id.l10n_ec_get_sale_identification_partner()
+        type_identification = self.partner_id.commercial_partner_id.l10n_ec_get_sale_identification_partner()
+        SubElement(infoCompRetencion, "tipoIdentificacionSujetoRetenido").text = type_identification
+        # solo cuando el proveedor es extranjero y tenga el tipo de identificación,
+        # IDENTIFICACIÓN DEL EXTERIOR code 08 según tabla 06 de la Ficha técnica del SRI,
+        # se implementara el tipo Sujeto Retenido.
+        if self.partner_id.commercial_partner_id.l10n_ec_foreign and type_identification == "08":
+            SubElement(infoCompRetencion, "tipoSujetoRetenido").text = (
+                self.partner_id.commercial_partner_id.l10n_ec_foreign_type or "01"
+            )
+        SubElement(infoCompRetencion, "parteRel").text = (
+            self.partner_id.commercial_partner_id.l10n_ec_related_part and "SI" or "NO"
+        )
         SubElement(infoCompRetencion, "razonSocialSujetoRetenido").text = util_model._clean_str(
             self.partner_id.commercial_partner_id.name
         )
@@ -606,21 +617,72 @@ class L10nEcWithhold(models.Model):
             self.partner_id.commercial_partner_id.vat
         )
         SubElement(infoCompRetencion, "periodoFiscal").text = self.issue_date.strftime("%m/%Y")
-        impuestos = SubElement(node_root, "impuestos")
-        for line in self.line_ids:
-            impuesto = SubElement(impuestos, "impuesto")
-            SubElement(impuesto, "codigo").text = line.get_retention_code()
-            SubElement(impuesto, "codigoRetencion").text = line.get_retention_tax_code()
-            SubElement(impuesto, "baseImponible").text = util_model.formato_numero(line.base_amount_currency)
-            SubElement(impuesto, "porcentajeRetener").text = util_model.formato_numero(line.percentage, 2)
-            SubElement(impuesto, "valorRetenido").text = util_model.formato_numero(line.tax_amount_currency)
-            SubElement(impuesto, "codDocSustento").text = self.invoice_id.l10n_ec_get_document_code_sri() or "01"
-            numDocSustento = self.invoice_id.l10n_ec_get_document_number()
-            dateDocSustento = self.invoice_id.l10n_ec_get_document_date()
-            SubElement(impuesto, "numDocSustento").text = numDocSustento.replace("-", "")  # pasar numero sin guiones
-            SubElement(impuesto, "fechaEmisionDocSustento").text = dateDocSustento.strftime(
-                util_model.get_formato_date()
+        docsSustento = SubElement(node_root, "docsSustento")
+        docSustento = SubElement(docsSustento, "docSustento")
+        SubElement(docSustento, "codSustento").text = self.invoice_id.l10n_ec_tax_support_id.code
+        SubElement(docSustento, "codDocSustento").text = self.invoice_id.l10n_ec_get_document_code_sri() or "01"
+        numDocSustento = self.invoice_id.l10n_ec_get_document_number()
+        SubElement(docSustento, "numDocSustento").text = numDocSustento.replace("-", "")  # pasar numero sin guiones
+        dateDocSustento = self.invoice_id.l10n_ec_get_document_date()
+        SubElement(docSustento, "fechaEmisionDocSustento").text = dateDocSustento.strftime(
+            util_model.get_formato_date()
+        )
+        if self.invoice_id.l10n_ec_foreign:
+            SubElement(docSustento, "pagoLocExt").text = "02"
+            SubElement(docSustento, "tipoRegi").text = self.invoice_id.l10n_ec_tipo_regimen_pago_exterior
+            SubElement(
+                docSustento, "paisEfecPago"
+            ).text = self.invoice_id.commercial_partner_id.country_id.l10n_ec_sri_code
+            SubElement(docSustento, "aplicConvDobTrib").text = (
+                self.invoice_id.l10n_ec_aplica_convenio_doble_tributacion
+                and self.invoice_id.l10n_ec_aplica_convenio_doble_tributacion.upper()
+                or "NO"
             )
+            SubElement(docSustento, "pagExtSujRetNorLeg").text = (
+                self.invoice_id.l10n_ec_pago_exterior_sujeto_retencion
+                and self.invoice_id.l10n_ec_pago_exterior_sujeto_retencion.upper()
+                or "NO"
+            )
+            SubElement(docSustento, "pagoRegFis").text = "SI"
+        else:
+            SubElement(docSustento, "pagoLocExt").text = "01"
+        SubElement(docSustento, "totalSinImpuestos").text = util_model.formato_numero(
+            self.invoice_id.amount_untaxed, decimales=currency.decimal_places
+        )
+        SubElement(docSustento, "importeTotal").text = util_model.formato_numero(
+            self.invoice_id.amount_total + sum(self.invoice_id.l10n_ec_withhold_line_ids.mapped("tax_amount_currency")),
+            decimales=currency.decimal_places,
+        )
+        # Definicion de Impuestos
+        impuestosDocSustento = SubElement(docSustento, "impuestosDocSustento")
+        if self.invoice_id.l10n_ec_base_iva_0 != 0:
+            tag = SubElement(impuestosDocSustento, "impuestoDocSustento")
+            SubElement(tag, "codImpuestoDocSustento").text = "2"
+            SubElement(tag, "codigoPorcentaje").text = "0"
+            SubElement(tag, "baseImponible").text = util_model.formato_numero(self.invoice_id.l10n_ec_base_iva_0, 2)
+            SubElement(tag, "tarifa").text = util_model.formato_numero(0, 0)
+            SubElement(tag, "valorImpuesto").text = util_model.formato_numero(0, 2)
+        if self.invoice_id.l10n_ec_base_iva != 0:
+            tag = SubElement(impuestosDocSustento, "impuestoDocSustento")
+            SubElement(tag, "codImpuestoDocSustento").text = "2"
+            SubElement(tag, "codigoPorcentaje").text = "2"
+            SubElement(tag, "baseImponible").text = util_model.formato_numero(self.invoice_id.l10n_ec_base_iva, 2)
+            SubElement(tag, "tarifa").text = util_model.formato_numero(12, 0)
+            SubElement(tag, "valorImpuesto").text = util_model.formato_numero(self.invoice_id.l10n_ec_iva, 2)
+        retenciones = SubElement(docSustento, "retenciones")
+        for line_iva in self.line_ids:
+            retencion = SubElement(retenciones, "retencion")
+            SubElement(retencion, "codigo").text = line_iva.get_retention_code()
+            SubElement(retencion, "codigoRetencion").text = line_iva.get_retention_tax_code()
+            SubElement(retencion, "baseImponible").text = util_model.formato_numero(line_iva.base_amount_currency)
+            SubElement(retencion, "porcentajeRetener").text = util_model.formato_numero(line_iva.percentage, 2)
+            SubElement(retencion, "valorRetenido").text = util_model.formato_numero(line_iva.tax_amount_currency)
+        payments_data = self.invoice_id.l10n_ec_get_payment_data()
+        pagos = SubElement(docSustento, "pagos")
+        for payment_data in payments_data:
+            pago = SubElement(pagos, "pago")
+            SubElement(pago, "formaPago").text = payment_data["formaPago"]
+            SubElement(pago, "total").text = util_model.formato_numero(payment_data["total"])
         self.l10n_ec_add_info_adicional(node_root)
         return node_root
 

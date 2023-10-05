@@ -77,6 +77,12 @@
                     <field name="invoice_id" />
                     <field name="tax_id" />
                     <field name="issue_date" />
+                    <group string="Filter By">
+                        <filter name="issue_date" string="Issue Date" date="issue_date" />
+                        <separator />
+                        <filter name="filter_by_iva" string="IVA" domain="[('type', '=', 'iva')]" />
+                        <filter name="filter_by_rent" string="Renta" domain="[('type', '=', 'rent')]" />
+                    </group>
                     <group expand="1" string="Group By">
                         <filter string="Tax" name="groupby_tax" domain="[]" context="{'group_by':'tax_id'}" />
                         <filter
@@ -134,7 +140,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">l10n_ec.withhold.line</field>
             <field name="view_mode">tree,kanban,form,pivot</field>
-            <field name="domain">[('withhold_id.type', '=', 'purchase')]</field>
+            <field name="domain">[('withhold_id.type', '=', 'purchase'), ('withhold_id.state', '=', 'done')]</field>
         </record>
         <menuitem
             id="menu_l10n_ec_withhold_line_purchases_action"
@@ -143,6 +149,21 @@
             action="l10n_ec_withhold_line_purchases_action"
             sequence="30"
         />
+        <record id="l10n_ec_withhold_line_sales_action" model="ir.actions.act_window">
+            <field name="name">Sale Withhold Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n_ec.withhold.line</field>
+            <field name="view_mode">tree,kanban,form,pivot</field>
+            <field name="domain">[('withhold_id.type', '=', 'sale'), ('withhold_id.state', '=', 'done')]</field>
+        </record>
+        <menuitem
+            id="menu_l10n_ec_withhold_line_sales_action"
+            name="Sale Withhold Lines"
+            parent="withholds_root"
+            action="l10n_ec_withhold_line_sales_action"
+            sequence="31"
+        />
+
         <record id="l10n_ec_withhold_form_view" model="ir.ui.view">
             <field name="name">l10n_ec.withhold.form</field>
             <field name="model">l10n_ec.withhold</field>
@@ -155,6 +176,14 @@
                             string="Validate"
                             class="oe_highlight"
                             states="draft"
+                        />
+                        <button
+                            name="%(action_wizard_change_date_withhold_view_form)d"
+                            type="action"
+                            string="Change Date"
+                            class="oe_highlight"
+                            groups="l10n_ec_niif.group_edit_invoice_date_edi"
+                            attrs="{'invisible': ['|', ('state', '!=', 'done'), ('type', '!=', 'sale')]}"
                         />
                         <button
                             name="action_cancel"
@@ -432,6 +461,13 @@
                     <field name="issue_date" />
                     <field name="partner_id" />
                     <field name="invoice_id" />
+                    <group string="Filter By">
+                        <filter name="filter_done" string="Done" domain="[('state', '=', 'done')]" />
+                        <filter name="issue_date" string="Issue Date" date="issue_date" />
+                        <separator />
+                        <filter name="filter_by_iva" string="IVA" domain="[('tax_iva', '&gt;', 0)]" />
+                        <filter name="filter_by_rent" string="Renta" domain="[('tax_rent', '&gt;', 0)]" />
+                    </group>
                     <group expand="1" string="Group By">
                         <filter
                             string="Issue Date"
@@ -477,7 +513,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">l10n_ec.withhold</field>
             <field name="view_mode">tree,kanban,form,pivot</field>
-            <field name="context">{"withhold_type": 'purchase'}</field>
+            <field name="context">{"withhold_type": 'purchase', 'search_default_filter_done': 1}</field>
             <field name="domain">[('type', '=', 'purchase')]</field>
         </record>
         <menuitem
@@ -492,7 +528,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">l10n_ec.withhold</field>
             <field name="view_mode">tree,kanban,form,pivot</field>
-            <field name="context">{"withhold_type": 'sale'}</field>
+            <field name="context">{"withhold_type": 'sale', 'search_default_filter_done': 1}</field>
             <field name="domain">[('type', '=', 'sale')]</field>
             <field name="view_id" ref="l10n_ec_withhold_tree_view" />
         </record>

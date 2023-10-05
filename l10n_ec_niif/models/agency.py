@@ -17,7 +17,12 @@ class L10nEcAgency(models.Model):
     name = fields.Char("Agency Name", required=True, readonly=False, index=True)
     count_invoice = fields.Integer(string="Count Invoice", compute="_compute_count_invoice")
     number = fields.Char(string="S.R.I. Number", size=3, required=True, readonly=False, index=True)
-    printer_point_ids = fields.One2many("l10n_ec.point.of.emission", "agency_id", "Points of Emission")
+    printer_point_ids = fields.One2many(
+        "l10n_ec.point.of.emission",
+        "agency_id",
+        "Points of Emission",
+        context={"active_test": False},
+    )
     user_ids = fields.Many2many("res.users", string="Allowed Users", help="", domain=[("share", "=", False)])
     address_id = fields.Many2one(
         "res.partner",
@@ -306,6 +311,8 @@ class L10EcPointOfEmission(models.Model):
         domain = modules_mapping.get_domain(invoice_type, include_state=False) + [
             (field_name, "like", start_doc_number)
         ]
+        if self.env.context.get("doc_ids", []):
+            domain += [("id", "not in", self.env.context.get("doc_ids", []))]
         recs_finded = res_model.search(domain, order=field_name + " DESC", limit=1)
         doc_finded = auth_line_model.browse()
         next_seq = False
@@ -407,6 +414,8 @@ class L10EcPointOfEmission(models.Model):
                 # todos los documentos de account.move se guardan en la misma tabla y con el mismo nombre de campo
                 # obtener el domain segun el tipo de documento
                 domain = modules_mapping.get_domain(invoice_type, include_state=False)
+                if self.env.context.get("doc_ids", []):
+                    domain += [("id", "not in", self.env.context.get("doc_ids", []))]
                 start_doc_number = "{}-{}-{}".format(self.agency_id.number, self.number, "%")
                 domain.append((field_name, "ilike", start_doc_number))
                 domain.append(("company_id", "=", self.company_id.id))

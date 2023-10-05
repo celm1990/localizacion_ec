@@ -323,11 +323,6 @@
             <field name="code_prefix">20210</field>
             <field name="parent_id" ref="account_group_202" />
         </record>
-        <record id="account_group_30101" model="account.group">
-            <field name="name">CAPITAL SOCIAL</field>
-            <field name="code_prefix">30101</field>
-            <field name="parent_id" ref="account_group_301" />
-        </record>
         <record id="account_group_30102" model="account.group">
             <field name="name">APORTES DE SOCIOS O ACCIONISTAS PARA FUTURA CAPITALIZACIÓN</field>
             <field name="code_prefix">30102</field>
@@ -1062,12 +1057,12 @@
         <record id="account_group_3010101" model="account.group">
             <field name="name">CAPITAL SUSCRITO o ASIGNADO</field>
             <field name="code_prefix">3010101</field>
-            <field name="parent_id" ref="account_group_30101" />
+            <field name="parent_id" ref="account_group_301" />
         </record>
         <record id="account_group_3010102" model="account.group">
             <field name="name">(-) CAPITAL SUSCRITO NO PAGADO, ACCIONES EN TESORERÍA</field>
             <field name="code_prefix">3010102</field>
-            <field name="parent_id" ref="account_group_30101" />
+            <field name="parent_id" ref="account_group_301" />
         </record>
         <record id="account_group_3010401" model="account.group">
             <field name="name">RESERVA LEGAL</field>

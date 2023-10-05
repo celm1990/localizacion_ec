@@ -247,7 +247,7 @@ class ResConfigSettings(models.TransientModel):
     )
     l10n_ec_sri_payment_id = fields.Many2one(
         "l10n_ec.sri.payment.method",
-        string=u"S.R.I Payment Method",
+        string="S.R.I Payment Method",
         related="company_id.l10n_ec_sri_payment_id",
         readonly=False,
     )
@@ -282,5 +282,15 @@ class ResConfigSettings(models.TransientModel):
     l10n_ec_microenterprise_regime_taxpayer = fields.Boolean(
         string="Microenterprise Regime Taxpayer",
         related="company_id.l10n_ec_microenterprise_regime_taxpayer",
+        readonly=False,
+    )
+    l10n_ec_rimpe_regime = fields.Boolean(
+        string="Régimen RIMPE",
+        related="company_id.l10n_ec_rimpe_regime",
+        readonly=False,
+    )
+    l10n_ec_authorization_expired_days = fields.Integer(
+        string="Notificar expiración antes de (días)",
+        related="company_id.l10n_ec_authorization_expired_days",
         readonly=False,
     )

@@ -41,6 +41,14 @@
 			<xsd:pattern value="([A-Z]|[a-z]|[0-9]|ñ|Ñ)+([\w]|[\S]|[^\n])*"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+	<xsd:simpleType name="contribuyenteRimpe">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="50"/>
+			<xsd:whiteSpace value="preserve"/>
+			<xsd:pattern value="([A-Z]|[a-z]|[0-9]|ñ|Ñ)+([\w]|[\S]|[^\n])*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
 	<xsd:simpleType name="nombreComercial">
 		<xsd:restriction base="xsd:string">
 			<xsd:minLength value="1"/>
@@ -66,6 +74,7 @@
 			<xsd:element name="dirMatriz" type="dirMatriz"/>
 			<xsd:element name="regimenMicroempresas" type="regimenMicroempresas" minOccurs="0"> </xsd:element>
 			<xsd:element name="agenteRetencion" type="agenteRetencion" minOccurs="0"> </xsd:element>
+			<xsd:element name="contribuyenteRimpe" type="contribuyenteRimpe" minOccurs="0"> </xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:simpleType name="numeroRuc">

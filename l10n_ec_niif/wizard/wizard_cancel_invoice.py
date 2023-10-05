@@ -60,11 +60,11 @@ class WizardCancelInvoice(models.TransientModel):
             company_id = self.company_id
             shop_recs = shop_model.search([("number", "=", number[0]), ("company_id", "=", company_id.id)], limit=1)
             if not shop_recs:
-                raise UserError(_(u"No existe una agencia con el numero %s, por favor verifique") % (number[0]))
+                raise UserError(_("No existe una agencia con el numero %s, por favor verifique") % (number[0]))
             printer_recs = printer_model.search([("number", "=", number[1]), ("agency_id", "=", shop_recs.id)], limit=1)
             if not printer_recs:
                 raise UserError(
-                    _(u"No existe un punto de emisión con el numero %s en la agencia %s, por favor verifique")
+                    _("No existe un punto de emisión con el numero %s en la agencia %s, por favor verifique")
                     % (number[1], number[0])
                 )
             if not invoice_recs:
@@ -117,7 +117,7 @@ class WizardCancelInvoice(models.TransientModel):
                         % (document_name, invoice.l10n_ec_document_number, invoice.partner_id.name_get()[0][1])
                     )
         if msj:
-            raise UserError(u"\n".join(msj))
+            raise UserError("\n".join(msj))
         model_data_recs = obj_model.search([("model", "=", "ir.ui.view"), ("name", "=", "view_invoice_tree")])
         if model_data_recs and invoice_cancel_ids:
             ctx = self.env.context.copy()
@@ -126,7 +126,7 @@ class WizardCancelInvoice(models.TransientModel):
             ctx["active_id"] = invoice_cancel_ids[0]
             view_id = model_data_recs[0].res_id
             res = {
-                "name": _(u"Documentos Anulados"),
+                "name": _("Documentos Anulados"),
                 "view_type": "form",
                 "view_mode": "tree",
                 "res_model": account_move_model._name,
@@ -151,7 +151,7 @@ class WizardCancelInvoiceLine(models.TransientModel):
         for rec in self:
             if not re.match(cadena, rec.number):
                 raise ValidationError(
-                    _(u"El número de factura es incorrecto, este debe tener la forma 001-00X-000XXXXXX, X es número")
+                    _("El número de factura es incorrecto, este debe tener la forma 001-00X-000XXXXXX, X es número")
                 )
 
     wizard_id = fields.Many2one("wizard.cancel.invoice", "Wizard", ondelete="cascade")

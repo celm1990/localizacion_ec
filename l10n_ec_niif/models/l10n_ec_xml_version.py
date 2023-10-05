@@ -24,7 +24,7 @@ class L10nEcXmlVersion(models.Model):
             ("liquidation", "Liquidacion de compras"),
             ("ats", "ATS"),
         ],
-        string=u"Aplicable en",
+        string="Aplicable en",
         required=True,
     )
 

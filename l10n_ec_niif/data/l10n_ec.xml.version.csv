@@ -5,7 +5,7 @@
 "sri_xml_e_invoice_2_1_0","Precios con 6 decimales","factura","l10n_ec_niif/data/xsd/factura_2_1_0.xsd","2.1.0","invoice"
 "sri_xml_e_credit_note_1_1_0","Precios con 6 decimales","notaCredito","l10n_ec_niif/data/xsd/notaCredito_1.1.0.xsd","1.1.0","credit_note"
 "sri_xml_e_credit_note_1_1_1","Precios con 2 decimales","notaCredito","l10n_ec_niif/data/xsd/notaCredito_1.1.1.xsd","1.1.1","credit_note"
-"sri_xml_e_withholding_1_1_0","Precios con 2 decimales","comprobanteRetencion","l10n_ec_niif/data/xsd/comprobanteRetencion_1.1.1.xsd","1.0.0","withholding"
+"sri_xml_e_withholding_1_1_0","Version ATS","comprobanteRetencion","l10n_ec_niif/data/xsd/ComprobanteRetencion_V2.0.0.xsd","2.0.0","withholding"
 "sri_xml_e_debit_note_1_1_1","Precios con 2 decimales","notaDebito","l10n_ec_niif/data/xsd/notaDebito_1.1.1.xsd","1.0.0","debit_note"
 "sri_xml_e_liquidation_1_0_0","Precios con 2 decimales","liquidacionCompra","l10n_ec_niif/data/xsd/Liquidacion_Compra_V_1_0_0.xsd","1.0.0","liquidation"
 "sri_xml_e_liquidation_1_1_0","Precios con 6 decimales","liquidacionCompra","l10n_ec_niif/data/xsd/Liquidacion_Compra_V_1_1_0.xsd","1.1.0","liquidation"

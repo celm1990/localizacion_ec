@@ -164,10 +164,16 @@ class L10nEcCommonDocumentElectronic(models.AbstractModel):
                         "description": line.description,
                     }
                 )
+        if self.env.company.l10n_ec_rimpe_regime:
+            info_data.append(
+                {
+                    "name": "Regimen",
+                    "description": "CONTRIBUYENTE RÉGIMEN RIMPE",
+                }
+            )
         return info_data
 
     def l10n_ec_add_info_adicional(self, NodeRoot):
-        util_model = self.env["l10n_ec.utils"]
         infoAdicional = SubElement(NodeRoot, "infoAdicional")
         info_data = self._l10n_ec_get_info_aditional()
         if not info_data:
@@ -179,6 +185,6 @@ class L10nEcCommonDocumentElectronic(models.AbstractModel):
             ]
         for line in info_data:
             campoAdicional = SubElement(infoAdicional, "campoAdicional")
-            campoAdicional.set("nombre", util_model._clean_str(line.get("name", "OtroCampo")))
-            campoAdicional.text = util_model._clean_str(line.get("description", "Otra Informacion"))
+            campoAdicional.set("nombre", line.get("name", "OtroCampo"))
+            campoAdicional.text = line.get("description", "Otra Informacion")
         return True

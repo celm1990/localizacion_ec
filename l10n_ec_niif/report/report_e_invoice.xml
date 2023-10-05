@@ -124,6 +124,11 @@
         </div>
         <t t-call="l10n_ec_niif.electronic_report_page_footer" />
     </template>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <table name="invoice_line_table" position="after">
+            <t t-if="o.l10n_ec_refund_ids" t-call="l10n_ec_niif.info_reembolso_document_body" />
+        </table>
+    </template>
     <!-- RIDE de facturas de cliente -->
     <template id="e_invoice_document_body">
         <div class="div-bordered">
@@ -146,6 +151,7 @@
                         </td>
                         <td>
                             <strong>Guia de remisión:</strong>
+                            <span t-field="o.l10n_ec_delivery_note_numbers" />
                         </td>
                     </tr>
                 </tbody>
@@ -205,7 +211,7 @@
                         <td class="text-right">
                             <span
                                 t-field="line.price_unit"
-                                t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'
+                                t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
                             />
                         </td>
                         <td class="text-right">
@@ -222,20 +228,21 @@
                         </td>
                     </tr>
                     <t t-if="line.display_type == 'line_section'">
-                        <td name="td_section_line" colspan="99">
+                        <td name="td_section_line" colspan="99" style="font-size: 9px;">
                             <span t-field="line.name" />
                         </td>
                         <t t-set="current_section" t-value="line" />
                         <t t-set="current_subtotal" t-value="0" />
                     </t>
                     <t t-if="line.display_type == 'line_note'">
-                        <td name="td_note_line" colspan="99">
+                        <td name="td_note_line" colspan="99" style="font-size: 9px;">
                             <span t-field="line.name" />
                         </td>
                     </t>
                 </t>
             </tbody>
         </table>
+        <t t-if="o.l10n_ec_refund_ids" t-call="l10n_ec_niif.info_reembolso_document_body" />
     </template>
     <!-- RIDE de notas de credito de cliente -->
     <template id="e_credit_note_document_body">
@@ -284,7 +291,7 @@
                             <strong>Razón de modificación:</strong>
                         </td>
                         <td>
-                            <span t-field="o.name" />
+                            <span t-field="o.ref" />
                         </td>
                     </tr>
                 </tbody>
@@ -342,7 +349,7 @@
                         <td class="text-right">
                             <span
                                 t-field="line.price_unit"
-                                t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'
+                                t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
                             />
                         </td>
                         <td class="text-right">
@@ -504,7 +511,7 @@
                         <td class="text-right">
                             <span
                                 t-field="line.price_unit"
-                                t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'
+                                t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
                             />
                         </td>
                         <td class="text-right">
@@ -513,6 +520,71 @@
                         </td>
                         <td class="text-right">
                             <span t-field="line.price_subtotal" />
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+    <!-- Info reembolso -->
+    <template id="info_reembolso_document_body">
+        <t t-set="total_ice" t-value="sum([l.total_ice for l in o.l10n_ec_refund_ids])" />
+        <t t-set="total_col" t-value="total_ice > 0 and 9 or 8" />
+        <table class="table table-sm table-bordered-black">
+            <thead>
+                <tr style="font-size: 10px;">
+                    <th t-att-colspan="total_col" class="text-center">DOCUMENTOS DE REEMBOLSO</th>
+                </tr>
+                <tr style="font-size: 10px;">
+                    <th name="th_document" class="amount-md">Documento</th>
+                    <th name="th_partner" class="">Empresa</th>
+                    <th name="th_authorization" class="">Autorización</th>
+                    <th name="th_date_issue" class="amount-md">Fecha de emisión</th>
+                    <th name="th_b_iva" class="amount-sm">Total base IVA</th>
+                    <th name="th_b_0" class="amount-sm">Total base 0</th>
+                    <th name="th_iva" class="amount-sm">Total IVA</th>
+                    <t t-if="total_ice > 0">
+                        <th name="th_ice" class="amount-sm">Total ICE</th>
+                    </t>
+                    <th name="th_total_invoice" class="amount-md">Total Factura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="o.l10n_ec_refund_ids" t-as="line">
+                    <tr style="font-size: 9px;">
+                        <td>
+                            <span t-esc="line.document_number" />
+                        </td>
+                        <td>
+                            <span t-esc="line.partner_id.display_name" />
+                        </td>
+                        <td>
+                            <t t-if="line.document_type == 'electronic'">
+                                <span t-esc="line.electronic_authorization" />
+                            </t>
+                            <t t-else="">
+                                <span t-esc="line.l10n_ec_partner_authorization_id.number" />
+                            </t>
+                        </td>
+                        <td>
+                            <span t-esc="line.date_invoice" />
+                        </td>
+                        <td class="text-right">
+                            <span t-field="line.total_base_iva" />
+                        </td>
+                        <td class="text-right">
+                            <span t-field="line.total_base_iva0" />
+                        </td>
+                        <td class="text-right">
+                            <span t-field="line.total_iva" />
+                        </td>
+                        <t t-if="total_ice > 0">
+                            <td class="text-right">
+                                <span t-field="line.total_ice" />
+                            </td>
+                        </t>
+                        <td class="text-right">
+                            <span t-field="line.total_invoice" />
                         </td>
                     </tr>
                 </t>
