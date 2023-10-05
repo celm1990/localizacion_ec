@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_invoice_refund_sale" model="ir.ui.view">
+        <field name="name">account.move.reversal.sale.form</field>
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="account.view_account_move_reversal" />
+        <field name="priority">50</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <!-- se cambia atributos para no tomar en cuenta el campo refund_method, siempre se debe usar numero de documentos en Ecuador-->
+            <xpath expr="//field[@name='l10n_latam_document_type_id']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('l10n_latam_use_documents', '=', False)], 'required':
+                        [('l10n_latam_use_documents', '=', True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='l10n_latam_document_number']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', '|', ('l10n_latam_use_documents', '=', False), ('l10n_latam_sequence_id', '!=',
+                                                                                        False)],
+                     'required': [('l10n_latam_sequence_id', '=', False), ('l10n_latam_use_documents', '=', True)],
+                     'readonly': [('l10n_ec_type_emission', 'in', ('electronic', 'auto_printer'))]
+                     }
+                </attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="before">
+                <field
+                    name="l10n_ec_point_of_emission_id"
+                    required="1"
+                    options="{'no_open': True, 'no_create': True}"
+                />
+                <field name="partner_id" invisible="1" />
+                <field name="partner_shipping_id" invisible="1" />
+                <field name="move_type" invisible="1" />
+                <field name="has_product_stockables" invisible="1" />
+                <field name="l10n_ec_type_emission" readonly="1" force_save="1" />
+                <field
+                    name="l10n_ec_authorization_line_id"
+                    force_save="1"
+                    readonly="1"
+                    options="{'no_open': True, 'no_create': True}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='journal_id']" position="after">
+                <field
+                    name="l10n_ec_type_credit_note"
+                    required="1"
+                    force_save="1"
+                    widget="radio"
+                    attrs="{'readonly':[('has_product_stockables','=', False)],
+                            'invisible':[('refund_method','=','modify')]}"
+                />
+                <field
+                    name="l10n_ec_picking_option"
+                    force_save="1"
+                    widget="radio"
+                    attrs="{'invisible':[('l10n_ec_type_credit_note','!=', 'return')], 'required':[('l10n_ec_type_credit_note','=', 'return')]}"
+                />
+                <div colspan="2">
+                    <p
+                        class="oe_grey"
+                        attrs="{'invisible':['|', ('l10n_ec_type_credit_note','!=', 'return'), ('l10n_ec_picking_option','!=', 'select')]}"
+                    >
+                        Please Select devolutions created previous
+                    </p>
+                    <p
+                        class="oe_grey"
+                        attrs="{'invisible':['|', ('l10n_ec_type_credit_note','!=', 'return'), ('l10n_ec_picking_option','!=', 'create')]}"
+                    >
+                        Please Select Operation Type for create devolutions
+                        <br />
+                        <strong>Note:</strong>
+                        this create one picking, for multi steps make devolution from picking
+                    </p>
+                </div>
+                <field
+                    name="picking_type_id"
+                    context="{'filter_picking_type_from_invoice': 'out_refund'}"
+                    options="{'no_create': True}"
+                    attrs="{'invisible': ['|', ('l10n_ec_type_credit_note', '!=', 'return'), ('l10n_ec_picking_option', '!=', 'create')], 'required': [('l10n_ec_type_credit_note', '=', 'return'), ('l10n_ec_picking_option', '=', 'create')]}"
+                />
+                <field
+                    name="picking_ids"
+                    options="{'no_create': True}"
+                    widget="many2many_tags"
+                    domain="[('partner_id', 'child_of', partner_id), ('state', '=', 'done'), ('invoice_ids', '=', False), ('move_lines.origin_returned_move_id', '!=', False)]"
+                    attrs="{'invisible': ['|', ('l10n_ec_type_credit_note', '!=', 'return'), ('l10n_ec_picking_option', '!=', 'select')], 'required': [('l10n_ec_type_credit_note', '=', 'return'), ('l10n_ec_picking_option', '=', 'select')]}"
+                />
+                <field name="include_all_lines" />
+                <field name="force_invoiced" widget="boolean_toggle" />
+            </xpath>
+            <xpath expr="//field[@name='date']/../.." position="after">
+                <notebook colspan="2">
+                    <page string="Details">
+                        <field
+                            name="line_ids"
+                            colspan="4"
+                            nolabel="1"
+                            context="{'l10n_ec_type_credit_note': l10n_ec_type_credit_note}"
+                        >
+                            <tree editable="top" create="false">
+                                <field name="process" />
+                                <field
+                                    name="l10n_ec_scrap"
+                                    attrs="{'readonly':[('product_id','=',False)], 'column_invisible': ['|', ('parent.l10n_ec_type_credit_note','!=','return'), ('parent.l10n_ec_picking_option','!=','create')]}"
+                                />
+                                <field name="line_id" invisible="1" />
+                                <field name="product_id" invisible="1" />
+                                <field name="name" required="1" />
+                                <field
+                                    name="account_id"
+                                    required="1"
+                                    options="{'no_create': True}"
+                                    domain="[('deprecated', '=', False)]"
+                                />
+                                <field
+                                    name="analytic_account_id"
+                                    optional="hide"
+                                    options="{'no_create': True}"
+                                    groups="analytic.group_analytic_accounting"
+                                />
+                                <field
+                                    name="analytic_tag_ids"
+                                    optional="hide"
+                                    options="{'no_create': True}"
+                                    widget="many2many_tags"
+                                    groups="analytic.group_analytic_tags"
+                                />
+                                <field name="quantity" required="1" />
+                                <field name="max_quantity" invisible="1" />
+                                <field
+                                    name="product_uom_id"
+                                    required="1"
+                                    readonly="1"
+                                    force_save="1"
+                                    options="{'no_create': True, 'no_open': True}"
+                                    groups="uom.group_uom"
+                                    optional="hide"
+                                />
+                                <field
+                                    name="lot_id"
+                                    readonly="1"
+                                    force_save="1"
+                                    options="{'no_create': True}"
+                                    optional="hide"
+                                    groups="stock.group_production_lot"
+                                />
+                                <field
+                                    name="stock_move_line_id"
+                                    readonly="1"
+                                    force_save="1"
+                                    options="{'no_create': True}"
+                                    optional="hide"
+                                />
+                                <field name="discount" required="1" />
+                                <field name="price_unit" required="1" />
+                                <field
+                                    name="tax_ids"
+                                    widget="many2many_tags"
+                                    readonly="1"
+                                    force_save="1"
+                                    optional="hide"
+                                />
+                                <field name="price_subtotal" readonly="1" save_readonly="1" />
+                                <field name="amount_tax" sum="Total IVA" readonly="1" save_readonly="1" />
+                                <field name="price_total" sum="Total" readonly="1" save_readonly="1" />
+                                <field name="other_amounts" invisible="1" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_account_invoice_refund_purchase" model="ir.ui.view">
+        <field name="name">account.move.reversal.purchase.form</field>
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="account.view_account_move_reversal" />
+        <field name="priority">50</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <!-- se cambia atributos para no tomar en cuenta el campo refund_method, siempre se debe usar numero de documentos en Ecuador-->
+            <xpath expr="//field[@name='l10n_latam_document_type_id']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('l10n_latam_use_documents', '=', False)], 'required':
+                        [('l10n_latam_use_documents', '=', True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='l10n_latam_document_number']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', '|', ('l10n_latam_use_documents', '=', False), ('l10n_latam_sequence_id', '!=',
+                                                                                        False)],
+                     'required': [('l10n_latam_sequence_id', '=', False), ('l10n_latam_use_documents', '=',
+                                                                           True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='reason']" position="after">
+                <field name="partner_id" invisible="1" />
+                <field name="l10n_latam_country_code" invisible="1" />
+                <field name="l10n_ec_type_supplier_authorization" invisible="1" />
+                <field name="has_product_stockables" invisible="1" />
+                <field name="l10n_ec_type_emission" required="1" />
+            </xpath>
+            <xpath expr="//field[@name='date']" position="before">
+                <field
+                    name="l10n_ec_supplier_authorization_id"
+                    attrs="{'required': [('l10n_latam_country_code', '=', 'EC'),
+                                            ('l10n_ec_type_supplier_authorization', '=', 'complete'),
+                                            ('move_type', 'in', ('in_invoice', 'in_refund')),
+                                            ('l10n_ec_type_emission', 'in', ('pre_printed', 'auto_printer'))],
+                        'invisible': ['|',
+                                        ('l10n_latam_country_code', '!=', 'EC'),
+                                        '|',
+                                        ('l10n_ec_type_supplier_authorization', '!=', 'complete'),
+                                        '|',
+                                        ('move_type', 'not in', ('in_invoice', 'in_refund')),
+                                        ('l10n_ec_type_emission', 'not in', ('pre_printed', 'auto_printer'))]
+                        }"
+                    domain="[('document_type', '=', move_type), ('commercial_partner_id', '=', partner_id)]"
+                    context="{'document_type': move_type, 'type_emission': l10n_ec_type_emission, 'default_partner_id': partner_id}"
+                />
+                <field
+                    name="l10n_ec_supplier_authorization_number"
+                    attrs="{'required': [('l10n_latam_country_code', '=', 'EC'),
+                                            ('l10n_ec_type_supplier_authorization', '=', 'simple'),
+                                            ('move_type', 'in', ('in_invoice', 'in_refund')),
+                                            ('l10n_ec_type_emission', 'in', ('pre_printed', 'auto_printer'))],
+                        'invisible': ['|',
+                                        ('l10n_latam_country_code', '!=', 'EC'),
+                                        '|',
+                                        ('l10n_ec_type_supplier_authorization', '!=', 'simple'),
+                                        '|',
+                                        ('move_type', 'not in', ('in_invoice', 'in_refund')),
+                                        ('l10n_ec_type_emission', 'not in', ('pre_printed', 'auto_printer'))]
+                        }"
+                />
+                <field
+                    name="l10n_ec_electronic_authorization"
+                    attrs="{'invisible':[('l10n_ec_type_emission','!=','electronic')],'required':[('l10n_ec_type_emission','=','electronic')]}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='journal_id']" position="after">
+                <field
+                    name="l10n_ec_type_credit_note"
+                    required="1"
+                    force_save="1"
+                    widget="radio"
+                    attrs="{'readonly':[('has_product_stockables','=', False)]}"
+                />
+                <field
+                    name="l10n_ec_picking_option"
+                    force_save="1"
+                    widget="radio"
+                    attrs="{'invisible':[('l10n_ec_type_credit_note','!=', 'return')], 'required':[('l10n_ec_type_credit_note','=', 'return')]}"
+                />
+                <div colspan="2">
+                    <p
+                        class="oe_grey"
+                        attrs="{'invisible':['|', ('l10n_ec_type_credit_note','!=', 'return'), ('l10n_ec_picking_option','!=', 'select')]}"
+                    >
+                        Please Select devolutions created previous
+                    </p>
+                    <p
+                        class="oe_grey"
+                        attrs="{'invisible':['|', ('l10n_ec_type_credit_note','!=', 'return'), ('l10n_ec_picking_option','!=', 'create')]}"
+                    >
+                        Please Select Operation Type for create devolutions
+                        <br />
+                        <strong>Note:</strong>
+                        this create one picking, for multi steps make devolution from picking
+                    </p>
+                </div>
+                <field
+                    name="picking_type_id"
+                    context="{'filter_picking_type_from_invoice': 'in_refund'}"
+                    options="{'no_create': True}"
+                    attrs="{'invisible': ['|', ('l10n_ec_type_credit_note', '!=', 'return'), ('l10n_ec_picking_option', '!=', 'create')], 'required': [('l10n_ec_type_credit_note', '=', 'return'), ('l10n_ec_picking_option', '=', 'create')]}"
+                />
+                <field
+                    name="picking_ids"
+                    options="{'no_create': True}"
+                    widget="many2many_tags"
+                    domain="[('partner_id', '=', partner_id), ('state', '=', 'done'), ('invoice_ids', '=', False), ('move_lines.origin_returned_move_id', '!=', False)]"
+                    attrs="{'invisible': ['|', ('l10n_ec_type_credit_note', '!=', 'return'), ('l10n_ec_picking_option', '!=', 'select')], 'required': [('l10n_ec_type_credit_note', '=', 'return'), ('l10n_ec_picking_option', '=', 'select')]}"
+                />
+                <field name="include_all_lines" />
+            </xpath>
+            <xpath expr="//field[@name='date']/../.." position="after">
+                <group string="Details" colspan="2" attrs="{'invisible': [('l10n_ec_type_credit_note','!=','return')]}">
+                    <field name="line_ids" nolabel="1" context="{'l10n_ec_type_credit_note': l10n_ec_type_credit_note}">
+                        <tree editable="top" create="false">
+                            <field name="process" />
+                            <field name="l10n_ec_scrap" invisible="1" />
+                            <field name="line_id" invisible="1" />
+                            <field name="product_id" invisible="1" />
+                            <field name="name" required="1" />
+                            <field
+                                name="account_id"
+                                required="1"
+                                options="{'no_create': True}"
+                                domain="[('deprecated', '=', False)]"
+                            />
+                            <field
+                                name="analytic_account_id"
+                                optional="hide"
+                                options="{'no_create': True}"
+                                groups="analytic.group_analytic_accounting"
+                            />
+                            <field
+                                name="analytic_tag_ids"
+                                optional="hide"
+                                options="{'no_create': True}"
+                                widget="many2many_tags"
+                                groups="analytic.group_analytic_tags"
+                            />
+                            <field name="quantity" required="1" />
+                            <field name="max_quantity" invisible="1" />
+                            <field
+                                name="product_uom_id"
+                                required="1"
+                                readonly="1"
+                                force_save="1"
+                                options="{'no_create': True, 'no_open': True}"
+                                optional="hide"
+                                groups="uom.group_uom"
+                            />
+                            <field
+                                name="lot_id"
+                                readonly="1"
+                                force_save="1"
+                                options="{'no_create': True}"
+                                optional="hide"
+                                groups="stock.group_production_lot"
+                            />
+                            <field name="stock_move_line_id" invisible="1" />
+                            <field name="discount" readonly="1" force_save="1" />
+                            <field name="price_unit" readonly="1" force_save="1" />
+                            <field name="tax_ids" widget="many2many_tags" readonly="1" force_save="1" optional="hide" />
+                            <field name="price_subtotal" readonly="1" />
+                            <field name="amount_tax" sum="Total IVA" readonly="1" />
+                            <field name="price_total" sum="Total" readonly="1" />
+                        </tree>
+                    </field>
+                </group>
+                <group
+                    string="Discount"
+                    colspan="2"
+                    attrs="{'invisible': [('l10n_ec_type_credit_note','!=','discount')]}"
+                >
+                    <field name="account_id" invisible="1" />
+                    <field
+                        name="line_discount_ids"
+                        nolabel="1"
+                        colspan="2"
+                        attrs="{'required': [('l10n_ec_type_credit_note','=','discount')]}"
+                    >
+                        <tree editable="top">
+                            <field name="price_subtotal" required="1" />
+                            <field
+                                name="account_id"
+                                required="1"
+                                options="{'no_quick_create': True}"
+                                domain="[('deprecated', '=', False)]"
+                            />
+                            <field
+                                name="tax_id"
+                                options="{'no_create': True}"
+                                required="1"
+                                context="{'tax_date': parent.date}"
+                                domain="[('type_tax_use','=','purchase'),('amount','>=', 0.0)]"
+                            />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

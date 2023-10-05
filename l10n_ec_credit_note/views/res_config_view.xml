@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_sri_config_settings" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sri</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="l10n_ec_niif.view_account_sri_config_settings" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='sri_credit_note']" position="after">
+                <div id="credit_note_mail" class="col-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="l10n_ec_sent_mail_credit_note_unreconcile_payment" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="l10n_ec_sent_mail_credit_note_unreconcile_payment"
+                            class="col-lg-3"
+                            string="Sent Mail for new Credit Note"
+                        />
+                        <div class="text-muted">
+                            Send email when invoice is are reconciled and new credit note remove this payment
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
